@@ -98,7 +98,7 @@ function draw() {
 
   // Instruction text at bottom
   fill(100);
-  textSize(18);
+  textSize(50);
   textAlign(CENTER, BOTTOM);
   textFont(subFont);
   text("Tap on the deck for a new question!", width / 2, height - 40);
@@ -167,8 +167,8 @@ function draw() {
       fill(0);
       textAlign(CENTER, CENTER);
       textFont(mainFont);
-      textSize(20);
-      textLeading(19);
+      textSize(50);
+      textLeading(49);
       text(currentQuestion, width / 2, height / 2);
     } else {
       image(cardFront, cardX, cardY, cardW, cardH);
