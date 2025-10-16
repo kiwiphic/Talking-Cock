@@ -105,7 +105,7 @@ function draw() {
 
   if (playingShuffle) {
     // Show shuffle animation (PNG sequence)
-    image(shuffleFrames[currentFrame], cardX, cardY, height / 2, height / 2);
+    image(shuffleFrames[currentFrame], cardX, cardY, height + 300, height);
     // Adjust speed of animation (lower = faster)
     if (frameCount % 2 === 0) currentFrame++;
 
