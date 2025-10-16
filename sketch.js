@@ -83,8 +83,8 @@ function preload() {
 // ===============================
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  cardW = 350;
-  cardH = 350;
+  cardW = width / 2;
+  cardH = height / 2;
   cardX = width / 2;
   cardY = height / 2;
 }
