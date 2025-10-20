@@ -1,3 +1,6 @@
+Please replace your current file with this version 👇
+(it’s fully GitHub Pages–compatible)
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,26 +8,22 @@
     <title>Talking Cock</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="sketch.js"></script>
-    <script src="deck1.js"></script>
-    <script src="deck2.js"></script>
-    <script src="deck3.js"></script>
   </head>
   <body>
     <script>
-      // Detect query string (e.g. ?deck=1)
+      // Get the "deck" query (e.g. ?deck=1)
       const params = new URLSearchParams(window.location.search);
       const deck = params.get("deck");
 
-      // Dynamically load the right script
+      // Dynamically load only one JS file
       if (deck === "1") {
-        document.write('<script src="deck1.js"><\/script>');
+        document.write('<script src="deck1.js"><\\/script>');
       } else if (deck === "2") {
-        document.write('<script src="deck2.js"><\/script>');
+        document.write('<script src="deck2.js"><\\/script>');
       } else if (deck === "3") {
-        document.write('<script src="deck3.js"><\/script>');
+        document.write('<script src="deck3.js"><\\/script>');
       } else {
-        document.write('<script src="sketch.js"><\/script>');
+        document.write('<script src="sketch.js"><\\/script>');
       }
     </script>
   </body>
