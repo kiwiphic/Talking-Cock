@@ -190,7 +190,7 @@ function loadDeck(deckNum) {
       "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
       "What type of\nbread would you\nbe and why?",
       "If you could tame\nany animal in the\nworld, what would\nit be and why?",
-      "If you could swap\nbodies,who would you\nswap with and why?",
+      "If you could swap\nbodies,who would\nyou swap with\nand why?",
     ];
   }
 
