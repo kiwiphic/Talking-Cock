@@ -1,3 +1,4 @@
+console.log("sketch.js loaded successfully");
 // ==========================================
 // Talking Cock — Home Screen (p5.js)
 // ==========================================
