@@ -149,11 +149,27 @@ function loadDeck(deckNum) {
   // Set questions per deck
   if (deckNum === 1) {
     questions = [
-      "Would you rather have your socks wet or your underwear wet?",
-      "Be scratched by a cat or be bitten by a dog?",
-      "Whisper forever or shout forever?",
-      "Drink drinks with a spoon or drink soup with a straw?",
-      "Step on lego or step on dog poop?"
+      "\n\nWould you rather\n\n\nhave your socks\nwet\n\nor\n\nyour underwear\nwet?",
+  "\n\nWould you rather\n\n\nbe scratched\nby a cat\n\nor\n\nbe bitten\nby a dog?",
+  "\n\nWould you rather\n\n\nwhisper forever\n\nor\n\nshout forever?",
+  "\n\nWould you rather\n\n\ndrink drinks with\na spoon\n\nor\n\ndrink soup with\na straw?",
+  "\n\nWould you rather\n\n\nstep on lego\n\nor\n\nstep on\ndog poop?",
+  "\n\nWould you rather\n\n\nhave lukewarm\nfries forever\n\nor\n\nhave lukewarm\ncoffee forever?",
+  "\n\nWould you rather\n\n\nbe hated by\nsomeone you like\n\nor\n\nbe liked by\nsomeone you hate?",
+  "\n\nWould you rather\n\n\nlose your\nsense of taste\n\nor\n\nlose your\nhearing?",
+  "\n\nWould you rather\n\n\npost your\ncamera roll\n\nor\n\nrelease your\ninternet search\nhistory?",
+  "\n\nWould you rather\n\n\nwisdom tooth\npain\n\nor\n\ningrown toenail\npain?",
+  "\n\nWould you rather\n\n\n10\ncockroaches\n\nor\n\n10\nlizards?",
+  "\n\nWould you rather\n\n\nbe caught talking\nto yourself\n\nor\n\ndance in\npublic?",
+  "\n\nWould you rather\n\n\nhave a super\nclingy partner\n\nor\n\nhave a\nnonchalant\npartner?",
+  "\n\nWould you rather\n\n\nhave no more\nsugar forever\n\nor\n\nhave no more\nmeat forever?",
+  "\n\nWould you rather\n\n\nlive in a\ndifferent country\nevery week\n\nor\n\nlive in one\ncountry forever?",
+  "\n\nWould you rather\n\n\nalways be\n5 min late\n\nor\n\nalways be\n1 hour early?",
+  "\n\nWould you rather\n\n\nairplane\naisle seat\n\nor\n\nairplane\nwindow seat?",
+  "\n\nWould you rather\n\n\ndrink\nKopitiam drinks\n\nor\n\ndrink\ncafe drinks?",
+  "\n\nWould you rather\n\n\nclimb a slope\n\nor\n\nclimb stairs?",
+  "\n\nWould you rather\n\n\nride a\nrollercoaster\n\nor\n\nenter a\nhaunted house?",
+  "\n\nWould you rather\n\n\neat ice cream\nin a cone\n\nor\n\neat ice cream\nin a cup?",
     ];
   } else if (deckNum === 2) {
     questions = [
@@ -246,8 +262,8 @@ function drawDeck() {
     fill(0);
     textAlign(CENTER, CENTER);
     textFont(myFont);
-    textSize(20);
-    textLeading(24);
+    textSize(50);
+    textLeading(49);
     text(currentQuestion, width / 2, height / 2);
   } else {
     image(cardFrontCurrent, cardX, cardY, cardW, cardH);
@@ -255,7 +271,7 @@ function drawDeck() {
 
   // Instruction text at bottom
   fill(100);
-  textSize(18);
+  textSize(50);
   textFont(subFont);
   textAlign(CENTER, BOTTOM);
   text("Tap on the deck for a new question!", width / 2, height - 40);
