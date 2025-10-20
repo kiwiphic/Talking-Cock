@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
-
+    <meta charset="UTF-8" />
+    <title>Talking Cock</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
   </head>
   <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
+    <script>
+      // Detect query string (e.g. ?deck=1)
+      const params = new URLSearchParams(window.location.search);
+      const deck = params.get("deck");
+
+      // Dynamically load the right script
+      if (deck === "1") {
+        document.write('<script src="deck1.js"><\/script>');
+      } else if (deck === "2") {
+        document.write('<script src="deck2.js"><\/script>');
+      } else if (deck === "3") {
+        document.write('<script src="deck3.js"><\/script>');
+      } else {
+        document.write('<script src="sketch.js"><\/script>');
+      }
+    </script>
   </body>
 </html>
