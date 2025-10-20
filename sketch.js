@@ -173,10 +173,9 @@ function loadDeck(deckNum) {
     ];
   } else if (deckNum === 2) {
     questions = [
-      "Pineapple on pizza or no pineapple?",
-      "Ice cream with fries or fries with ice cream?",
-      "Eat only rice or only noodles for a month?",
-      "Kaya toast every morning or durian every morning?"
+      "\n\nYour thoughts on\n\n\nPineapple\non pizza",
+      "\n\nYour thoughts on\n\n\nMint\nchocolate\nice cream",
+      "\n\nYour thoughts on\n\n\nIce cream\nwith fries",
     ];
   } else if (deckNum === 3) {
     questions = [
