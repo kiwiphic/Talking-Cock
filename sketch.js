@@ -1,5 +1,5 @@
 // ==========================================
-// Talking Cock — Full Game with Decks
+// Talking Cock — Full Game with Decks (Preloaded)
 // ==========================================
 
 // Fonts and assets
@@ -7,8 +7,9 @@ let myFont;
 let currentDeck = 0; // 0 = home, 1,2,3 = decks
 
 // Card variables
-let cardFront, cardBack;
-let shuffleFrames = [];
+let cardFront = [], cardBack = [];
+let shuffleFrames = [[], [], []]; // array of arrays for decks
+let cardFrontCurrent, cardBackCurrent, shuffleFramesCurrent;
 let currentFrame = 0;
 let playingShuffle = false;
 let playingFlip = false;
@@ -23,26 +24,49 @@ let cardX, cardY, cardW, cardH;
 let questions = [];
 let currentQuestion = "";
 
-// Preload assets
+// ===============================
+// Preload all assets
+// ===============================
 function preload() {
   myFont = loadFont("Assets/Fonts/Filson_Soft_Bold.otf");
 
-  // Optional: Preload home deck button images if any
+  // Deck 1
+  cardFront[1] = loadImage("Assets/Cards/Card1_Front.png");
+  cardBack[1] = loadImage("Assets/Cards/Card1_Back.png");
+  for (let i = 0; i <= 54; i++) {
+    shuffleFrames[1].push(loadImage(`Assets/Shuffle1/Shuffle_${nf(i,5)}.png`));
+  }
+
+  // Deck 2
+  cardFront[2] = loadImage("Assets/Cards/Card2_Front.png");
+  cardBack[2] = loadImage("Assets/Cards/Card2_Back.png");
+  for (let i = 0; i <= 54; i++) {
+    shuffleFrames[2].push(loadImage(`Assets/Shuffle2/Shuffle_${nf(i,5)}.png`));
+  }
+
+  // Deck 3
+  cardFront[3] = loadImage("Assets/Cards/Card3_Front.png");
+  cardBack[3] = loadImage("Assets/Cards/Card3_Back.png");
+  for (let i = 0; i <= 54; i++) {
+    shuffleFrames[3].push(loadImage(`Assets/Shuffle3/Shuffle_${nf(i,5)}.png`));
+  }
 }
 
+// ===============================
 // Setup canvas
+// ===============================
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont(myFont);
   textAlign(CENTER, CENTER);
 
-  // Set card position and size
+  // Card position and size
   cardX = width / 2;
   cardY = height / 2;
   cardW = 350;
   cardH = 350;
 
-  // Detect query string deck (if user shares link)
+  // Detect query string deck
   const params = new URLSearchParams(window.location.search);
   const deck = params.get("deck");
   if (deck) {
@@ -51,7 +75,9 @@ function setup() {
   }
 }
 
+// ===============================
 // Draw loop
+// ===============================
 function draw() {
   background(240);
 
@@ -62,9 +88,9 @@ function draw() {
   }
 }
 
-// ==========================================
+// ===============================
 // HOME SCREEN
-// ==========================================
+// ===============================
 function drawHome() {
   fill(0);
   textSize(40);
@@ -77,7 +103,7 @@ function drawHome() {
   drawDeckButton("Deck 3", width / 2, height / 2 + 60, 3);
 }
 
-// Button drawing and click handling
+// Draw a deck selection button
 function drawDeckButton(label, x, y, deckNum) {
   rectMode(CENTER);
   stroke(0);
@@ -101,11 +127,10 @@ function drawDeckButton(label, x, y, deckNum) {
   }
 }
 
-// ==========================================
-// DECK LOADING
-// ==========================================
+// ===============================
+// LOAD DECK
+// ===============================
 function loadDeck(deckNum) {
-  shuffleFrames = [];
   currentQuestion = "";
   showingBack = false;
   playingShuffle = false;
@@ -113,54 +138,43 @@ function loadDeck(deckNum) {
   currentFrame = 0;
   flipProgress = 0;
 
+  // Assign current deck images
+  cardFrontCurrent = cardFront[deckNum];
+  cardBackCurrent = cardBack[deckNum];
+  shuffleFramesCurrent = shuffleFrames[deckNum];
+
+  // Deck-specific questions
   if (deckNum === 1) {
-    cardFront = loadImage("Assets/Cards/Card1_Front.png");
-    cardBack = loadImage("Assets/Cards/Card1_Back.png");
     questions = [
       "Would you rather have your socks wet or your underwear wet?",
       "Be scratched by a cat or be bitten by a dog?",
       "Whisper forever or shout forever?"
     ];
-    for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Assets/Shuffle1/Shuffle_${nf(i,5)}.png`));
-    }
   } else if (deckNum === 2) {
-    cardFront = loadImage("Assets/Cards/Card2_Front.png");
-    cardBack = loadImage("Assets/Cards/Card2_Back.png");
     questions = [
       "Pineapple on pizza or no pineapple?",
       "Ice cream with fries or fries with ice cream?"
     ];
-    for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Assets/Shuffle2/Shuffle_${nf(i,5)}.png`));
-    }
   } else if (deckNum === 3) {
-    cardFront = loadImage("Assets/Cards/Card3_Front.png");
-    cardBack = loadImage("Assets/Cards/Card3_Back.png");
     questions = [
       "Hot takes deck question 1",
       "Hot takes deck question 2"
     ];
-    for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Assets/Shuffle3/Shuffle_${nf(i,5)}.png`));
-    }
   }
 }
 
-// ==========================================
+// ===============================
 // DRAW DECK
-// ==========================================
+// ===============================
 function drawDeck() {
-  // Draw "Back to Home" button
   drawBackButton();
-
   imageMode(CENTER);
 
   // Shuffle animation
   if (playingShuffle) {
-    image(shuffleFrames[currentFrame], cardX, cardY, cardW*2.3, cardH*1.4); // scaled like original
+    image(shuffleFramesCurrent[currentFrame], cardX, cardY, cardW*2.3, cardH*1.4);
     if (frameCount % 2 === 0) currentFrame++;
-    if (currentFrame >= shuffleFrames.length) {
+    if (currentFrame >= shuffleFramesCurrent.length) {
       playingShuffle = false;
       currentFrame = 0;
       playingFlip = true;
@@ -174,26 +188,18 @@ function drawDeck() {
   if (playingFlip) {
     push();
     translate(cardX, cardY);
+    let scaleFactor = flipProgress < 1 ? map(flipProgress,0,1,1,0) : map(flipProgress,1,2,0,1);
 
-    let scaleFactor;
     if (flipProgress < 1) {
-      scaleFactor = map(flipProgress, 0, 1, 1, 0);
-      if (flipToFront) {
-        image(cardBack, 0, 0, cardW*scaleFactor, cardH);
-      } else {
-        image(cardFront, 0, 0, cardW*scaleFactor, cardH);
-      }
+      if (flipToFront) image(cardBackCurrent, 0,0, cardW*scaleFactor, cardH);
+      else image(cardFrontCurrent,0,0, cardW*scaleFactor, cardH);
     } else {
-      scaleFactor = map(flipProgress, 1, 2, 0, 1);
-      if (flipToFront) {
-        image(cardFront, 0, 0, cardW*scaleFactor, cardH);
-      } else {
-        image(cardBack, 0, 0, cardW*scaleFactor, cardH);
-      }
+      if (flipToFront) image(cardFrontCurrent,0,0, cardW*scaleFactor, cardH);
+      else image(cardBackCurrent,0,0, cardW*scaleFactor, cardH);
     }
     pop();
-    flipProgress += 0.1;
 
+    flipProgress += 0.1;
     if (flipProgress >= 2) {
       playingFlip = false;
       if (flipToFront) {
@@ -210,31 +216,31 @@ function drawDeck() {
 
   // Normal card state
   if (showingBack) {
-    image(cardBack, cardX, cardY, cardW, cardH);
+    image(cardBackCurrent, cardX, cardY, cardW, cardH);
     fill(0);
     textAlign(CENTER, CENTER);
     textFont(myFont);
     textSize(20);
-    textLeading(24); // line spacing
+    textLeading(24);
     text(currentQuestion, width / 2, height / 2);
   } else {
-    image(cardFront, cardX, cardY, cardW, cardH);
+    image(cardFrontCurrent, cardX, cardY, cardW, cardH);
   }
 }
 
-// ==========================================
+// ===============================
 // INPUT HANDLING
-// ==========================================
+// ===============================
 function mousePressed() {
   if (currentDeck === 0) return; // no deck interaction on home
 
-  // Check back button
+  // Back to home button
   if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 60) {
     currentDeck = 0;
     return;
   }
 
-  // Check card hitbox
+  // Card hitbox
   if (!playingShuffle && !playingFlip &&
       mouseX > cardX - cardW/2 && mouseX < cardX + cardW/2 &&
       mouseY > cardY - cardH/2 && mouseY < cardY + cardH/2) {
@@ -249,9 +255,9 @@ function mousePressed() {
   }
 }
 
-// ==========================================
+// ===============================
 // DRAW BACK BUTTON
-// ==========================================
+// ===============================
 function drawBackButton() {
   rectMode(CORNER);
   stroke(0);
@@ -263,3 +269,4 @@ function drawBackButton() {
   textAlign(CENTER, CENTER);
   text("Back", 70, 40);
 }
+
