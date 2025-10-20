@@ -187,7 +187,7 @@ function loadDeck(deckNum) {
   } else if (deckNum === 3) {
     questions = [
      "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
-      "If you were a\nghost,who would you\nhaunt and what\nwould you do to\nannoy them?",
+      "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
       "What type of\nbread would you\nbe and why?",
       "If you could tame\nany animal in the\nworld, what would\nit be and why?",
       "If you could swap\nbodies,who would you\nswap with and why?",
