@@ -66,14 +66,14 @@ function getNewQuestion() {
 // Preload assets
 // ===============================
 function preload() {
-  cardFront = loadImage("Assets/Card1_Front.png");
-  cardBack = loadImage("Assets/Card1_Back.png");
-  mainFont = loadFont("Assets/Filson_Soft_Bold.otf");
-  subFont = loadFont("Assets/Quicksand_Book.otf");
+  cardFront = loadImage("Assets/Cards/Card1_Front.png");
+  cardBack = loadImage("Assets/Cards/Card1_Back.png");
+  mainFont = loadFont("Assets/Fonts/Filson_Soft_Bold.otf");
+  subFont = loadFont("Assets/Fonts/Quicksand_Book.otf");
 
   // Load shuffle PNG sequence
   for (let i = 0; i <= 54; i++) {
-    let filename = `Shuffle/Shuffle_${nf(i, 5)}.png`;
+    let filename = `Assets/Shuffle1/Shuffle_${nf(i, 5)}.png`;
     shuffleFrames.push(loadImage(filename));
   }
 }
