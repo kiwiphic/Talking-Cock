@@ -173,9 +173,15 @@ function loadDeck(deckNum) {
     ];
   } else if (deckNum === 2) {
     questions = [
-      "\n\nYour thoughts on\n\n\nPineapple\non pizza",
+     "\n\nYour thoughts on\n\n\nPineapple\non pizza",
       "\n\nYour thoughts on\n\n\nMint\nchocolate\nice cream",
-      "\n\nYour thoughts on\n\n\nIce cream\nwith fries",
+      "\n\nYour thoughts on\n\n\nLicking vs\nbiting\nice cream",
+      "\n\nYour thoughts on\n\n\n\nMatcha",
+      "\n\nYour thoughts on\n\n\nShowering\nin the\nmorning",
+      "\n\nYour thoughts on\n\n\nHoroscope\nenthusiasts",
+      "\n\nYour thoughts on\n\n\nCats\nvs\ndogs",
+      "\n\nYour thoughts on\n\n\nThe 3\nsecond rule\n(Food)",
+      "\n\nYour thoughts on\n\n\nWearing the\nsame jeans\nfor a week",
     ];
   } else if (deckNum === 3) {
     questions = [
