@@ -1,27 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Talking Cock</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-  </head>
-  <body>
-    <script>
-      // Get the "deck" query (e.g. ?deck=1)
-      const params = new URLSearchParams(window.location.search);
-      const deck = params.get("deck");
-
-      // Dynamically load only one JS file
-      if (deck === "1") {
-        document.write('<script src="deck1.js"><\\/script>');
-      } else if (deck === "2") {
-        document.write('<script src="deck2.js"><\\/script>');
-      } else if (deck === "3") {
-        document.write('<script src="deck3.js"><\\/script>');
-      } else {
-        document.write('<script src="sketch.js"><\\/script>');
-      }
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Talking Cock</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="sketch.js"></script> <!-- always load home screen first -->
+</head>
+<body>
+</body>
 </html>
