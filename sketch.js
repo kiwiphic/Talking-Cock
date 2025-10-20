@@ -36,6 +36,7 @@ function preload() {
   cardBack[1] = loadImage("Assets/Cards/Card1_Back.png");
   for (let i = 0; i <= 54; i++) {
     shuffleFrames[1].push(loadImage(`Assets/Shuffle1/Shuffle_${nf(i,5)}.png`));
+    shuffleFramesCurrent = shuffleFrames[deckNum]; // Assign after loading images
   }
 
   // Deck 2
@@ -43,6 +44,7 @@ function preload() {
   cardBack[2] = loadImage("Assets/Cards/Card2_Back.png");
   for (let i = 0; i <= 54; i++) {
     shuffleFrames[2].push(loadImage(`Assets/Shuffle2/Shuffle_${nf(i,5)}.png`));
+    shuffleFramesCurrent = shuffleFrames[deckNum]; // Assign after loading images
   }
 
   // Deck 3
@@ -50,6 +52,7 @@ function preload() {
   cardBack[3] = loadImage("Assets/Cards/Card3_Back.png");
   for (let i = 0; i <= 54; i++) {
     shuffleFrames[3].push(loadImage(`Assets/Shuffle3/Shuffle_${nf(i,5)}.png`));
+    shuffleFramesCurrent = shuffleFrames[deckNum]; // Assign after loading images
   }
 }
 
