@@ -61,10 +61,10 @@ function setup() {
   textAlign(CENTER, CENTER);
 
   // Card position and size
-  cardX = width / 2;
+  cardX = height / 2;
   cardY = height / 2;
-  cardW = 350;
-  cardH = 350;
+  cardW = width / 2;
+  cardH = height / 2;
 
   // Detect query string deck
   const params = new URLSearchParams(window.location.search);
@@ -138,6 +138,13 @@ function loadDeck(deckNum) {
   currentFrame = 0;
   flipProgress = 0;
 
+  // Instruction text at bottom
+  fill(100);
+  textSize(50);
+  textAlign(CENTER, BOTTOM);
+  textFont(subFont);
+  text("Tap on the deck for a new question!", width / 2, height - 40);
+
   // Assign current deck images
   cardFrontCurrent = cardFront[deckNum];
   cardBackCurrent = cardBack[deckNum];
@@ -172,7 +179,7 @@ function drawDeck() {
 
   // Shuffle animation
   if (playingShuffle) {
-    image(shuffleFramesCurrent[currentFrame], cardX, cardY, cardW*2.3, cardH*1.4);
+    image(shuffleFramesCurrent[currentFrame], cardX, cardY, height, height*5/8);
     if (frameCount % 2 === 0) currentFrame++;
     if (currentFrame >= shuffleFramesCurrent.length) {
       playingShuffle = false;
