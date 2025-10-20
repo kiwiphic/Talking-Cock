@@ -98,6 +98,7 @@ function draw() {
 function drawHome() {
   fill(0);
   textSize(40);
+  textFont(myFont);
   text("Talking Cock", width / 2, height / 4);
   textSize(20);
   text("Select your deck of nonsense", width / 2, height / 4 + 50);
