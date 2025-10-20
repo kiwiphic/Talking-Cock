@@ -183,6 +183,7 @@ function loadDeck(deckNum) {
       "\n\nYour thoughts on\n\n\nCats\nvs\ndogs",
       "\n\nYour thoughts on\n\n\nThe 3\nsecond rule\n(Food)",
       "\n\nYour thoughts on\n\n\nWearing the\nsame jeans\nfor a week",
+      "\n\nYour thoughts on\n\n\nGhosting a\nfirst date",
     ];
   } else if (deckNum === 3) {
     questions = [
