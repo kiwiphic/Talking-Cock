@@ -29,6 +29,7 @@ let currentQuestion = "";
 // ===============================
 function preload() {
   myFont = loadFont("Assets/Fonts/Filson_Soft_Bold.otf");
+  subFont = loadFont("Assets/Fonts/Quicksand_Book.otf");
 
   // Deck 1
   cardFront[1] = loadImage("Assets/Cards/Card1_Front.png");
