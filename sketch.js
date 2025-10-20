@@ -65,10 +65,10 @@ function setup() {
   textAlign(CENTER, CENTER);
 
   // Card position and size
-  cardX = height / 2;
-  cardY = height / 2;
-  cardW = width / 2;
+  cardW = height / 2;
   cardH = height / 2;
+  cardX = width / 2;
+  cardY = height / 2;
 
   // Detect query string deck
   const params = new URLSearchParams(window.location.search);
