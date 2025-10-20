@@ -114,35 +114,35 @@ function loadDeck(deckNum) {
   flipProgress = 0;
 
   if (deckNum === 1) {
-    cardFront = loadImage("Assets/Card1_Front.png");
-    cardBack = loadImage("Assets/Card1_Back.png");
+    cardFront = loadImage("Assets/Cards/Card1_Front.png");
+    cardBack = loadImage("Assets/Cards/Card1_Back.png");
     questions = [
       "Would you rather have your socks wet or your underwear wet?",
       "Be scratched by a cat or be bitten by a dog?",
       "Whisper forever or shout forever?"
     ];
     for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Shuffle/Shuffle_${nf(i,5)}.png`));
+      shuffleFrames.push(loadImage(`Assets/Shuffle1/Shuffle_${nf(i,5)}.png`));
     }
   } else if (deckNum === 2) {
-    cardFront = loadImage("Assets/Card2_Front.png");
-    cardBack = loadImage("Assets/Card2_Back.png");
+    cardFront = loadImage("Assets/Cards/Card2_Front.png");
+    cardBack = loadImage("Assets/Cards/Card2_Back.png");
     questions = [
       "Pineapple on pizza or no pineapple?",
       "Ice cream with fries or fries with ice cream?"
     ];
     for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Shuffle2/Shuffle2_${nf(i,5)}.png`));
+      shuffleFrames.push(loadImage(`Assets/Shuffle2/Shuffle_${nf(i,5)}.png`));
     }
   } else if (deckNum === 3) {
-    cardFront = loadImage("Assets/Card3_Front.png");
-    cardBack = loadImage("Assets/Card3_Back.png");
+    cardFront = loadImage("Assets/Cards/Card3_Front.png");
+    cardBack = loadImage("Assets/Cards/Card3_Back.png");
     questions = [
       "Hot takes deck question 1",
       "Hot takes deck question 2"
     ];
     for (let i = 0; i <= 54; i++) {
-      shuffleFrames.push(loadImage(`Shuffle3/Shuffle3_${nf(i,5)}.png`));
+      shuffleFrames.push(loadImage(`Assets/Shuffle3/Shuffle_${nf(i,5)}.png`));
     }
   }
 }
