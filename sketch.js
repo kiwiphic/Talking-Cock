@@ -185,9 +185,11 @@ function loadDeck(deckNum) {
     ];
   } else if (deckNum === 3) {
     questions = [
-      "Hot takes deck question 1",
-      "Hot takes deck question 2",
-      "Hot takes deck question 3"
+     "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
+      "If you were a ghost,\nwho would you haunt\nand what would you\ndo to annoy them?",
+      "What type of\nbread would you\nbe and why?",
+      "If you could tame\nany animal in the\nworld, what would\nit be and why?",
+      "If you could swap bodies,\nwho would you swap with\nand why?",
     ];
   }
 
