@@ -83,7 +83,7 @@ function setup() {
 // Draw loop
 // ===============================
 function draw() {
-  background(240);
+  background('#fcf7e6');
 
   if (currentDeck === 0) {
     drawHome();
