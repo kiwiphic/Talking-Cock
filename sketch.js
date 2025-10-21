@@ -104,20 +104,21 @@ function drawHome() {
   text("Select your deck of nonsense", width / 2, height / 4 + 50);
 
   drawDeckButton("Deck 1", width / 2, height / 2, 1);
-  drawDeckButton("Deck 2", width / 2, height / 2 + 60, 2);
-  drawDeckButton("Deck 3", width / 2, height / 2 + 120, 3);
+  drawDeckButton("Deck 2", width / 2, height / 2 + 100, 2);
+  drawDeckButton("Deck 3", width / 2, height / 2 + 200, 3);
 }
 
 // Draw a deck selection button
 function drawDeckButton(label, x, y, deckNum) {
   rectMode(CENTER);
+  textAlign(CENTER, CENTER);
   stroke(0);
   fill(255);
-  rect(x, y, 200, 50, 10);
+  rect(x, y, 250, 70, 15);
 
   noStroke();
   fill(0);
-  textSize(18);
+  textSize(40);
   text(label, x, y);
 
   if (
