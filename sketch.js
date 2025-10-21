@@ -100,12 +100,12 @@ function drawHome() {
   textSize(40);
   textFont(myFont);
   text("Talking Cock", width / 2, height / 4);
-  textSize(20);
+  textSize(40);
   text("Select your deck of nonsense", width / 2, height / 4 + 50);
 
-  drawDeckButton("Deck 1", width / 2, height / 2 - 60, 1);
-  drawDeckButton("Deck 2", width / 2, height / 2, 2);
-  drawDeckButton("Deck 3", width / 2, height / 2 + 60, 3);
+  drawDeckButton("Deck 1", width / 2, height / 2, 1);
+  drawDeckButton("Deck 2", width / 2, height / 2 + 60, 2);
+  drawDeckButton("Deck 3", width / 2, height / 2 + 120, 3);
 }
 
 // Draw a deck selection button
@@ -184,6 +184,9 @@ function loadDeck(deckNum) {
       "\n\nYour thoughts on\n\n\nThe 3\nsecond rule\n(Food)",
       "\n\nYour thoughts on\n\n\nWearing the\nsame jeans\nfor a week",
       "\n\nYour thoughts on\n\n\nGhosting a\nfirst date",
+      "\n\nYour thoughts on\n\n\nSock shoe,\nsock shoe\nvs\nsock sock,\nshoe shoe",
+      "\n\nYour thoughts on\n\n\nCrocks being\na fashion\nstatement",
+      "\n\nYour thoughts on\n\n\nArtificial\nintelligence",
     ];
   } else if (deckNum === 3) {
     questions = [
