@@ -19,6 +19,10 @@ let flipProgress = 0;
 let showingBack = false;
 let flipToFront = false;
 
+// Triangles
+let angle = 0;
+let bgTriangles = [];
+
 // Card position and size
 let cardX, cardY, cardW, cardH;
 
@@ -198,6 +202,30 @@ function loadDeck(deckNum) {
       "If you could swap\nbodies,who would\nyou swap with\nand why?",
     ];
   }
+  
+// Create animated triangles for background — around edges, not middle
+bgTriangles = [];
+let centerBuffer = min(width, height) * 0.35; // safe zone around the card
+for (let i = 0; i < 30; i++) {
+  let x, y;
+
+  // Keep generating until triangle is far enough from center
+  do {
+    x = random(width);
+    y = random(height);
+  } while (dist(x, y, width / 2, height / 2) < centerBuffer);
+
+  bgTriangles.push({
+    x: x,
+    y: y,
+    size: random(40, 100),
+    speed: random(0.002, 0.005),
+    alphaOffset: random(TWO_PI),
+    driftX: random(-0.3, 0.3),
+    driftY: random(-0.3, 0.3),
+  });
+}
+
 
   // Initialize non-repeating question array
   availableQuestions = [...questions];
@@ -221,6 +249,43 @@ function getNewQuestion() {
 // ===============================
 function drawDeck() {
   drawBackButton();
+  
+// Rotating, fading, drifting triangle background
+noStroke();
+let deckColor;
+if (currentDeck === 1) deckColor = color(255, 196, 12);
+else if (currentDeck === 2) deckColor = color(8, 125, 190);
+else if (currentDeck === 3) deckColor = color(4, 116, 60);
+
+for (let t of bgTriangles) {
+  push();
+  translate(t.x, t.y);
+  rotate(angle * t.speed * 50);
+
+  let alpha = map(sin(angle + t.alphaOffset), -1, 1, 60, 150);
+  let c = color(red(deckColor), green(deckColor), blue(deckColor), alpha);
+  fill(c);
+
+  triangle(
+    -t.size / 2, t.size / 2,
+    0, -t.size / 2,
+    t.size / 2, t.size / 2
+  );
+  pop();
+
+  // Gentle drifting
+  t.x += t.driftX * 0.5;
+  t.y += t.driftY * 0.5;
+
+  // Wrap triangles when they drift off-screen
+  if (t.x < -t.size) t.x = width + t.size;
+  if (t.x > width + t.size) t.x = -t.size;
+  if (t.y < -t.size) t.y = height + t.size;
+  if (t.y > height + t.size) t.y = -t.size;
+}
+
+angle += 0.02;
+
   imageMode(CENTER);
 
   // Shuffle animation
