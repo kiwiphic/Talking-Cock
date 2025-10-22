@@ -88,6 +88,7 @@ function setup() {
   driftY: random(-0.3, 0.3),
   aspectX: random(0.6, 1.4),
   aspectY: random(0.6, 1.4),
+  baseRotation: random(TWO_PI),
   color: random([
     color(232, 68, 37),  // red
     color(255, 196, 12), // yellow
@@ -132,8 +133,8 @@ function drawHomeBackground() {
   for (let t of homeTriangles) {
     push();
     translate(t.x, t.y);
-    rotate(homeAngle * t.speed * 2);
-
+    rotate(t.baseRotation + homeAngle * t.speed * 2);
+    
     // 🔹 Full opacity fill (no transparency reduction)
     fill(t.color);
 
@@ -285,6 +286,7 @@ function loadDeck(deckNum) {
       x, y,
       size: random(40, 100),
       speed: random(0.002, 0.005),
+      baseRotation: random(TWO_PI),
       alphaOffset: random(TWO_PI),
       driftX: random(-0.3, 0.3),
       driftY: random(-0.3, 0.3),
@@ -323,7 +325,7 @@ function drawDeck() {
   for (let t of bgTriangles) {
     push();
     translate(t.x, t.y);
-    rotate(angle * t.speed * 50);
+    rotate(t.baseRotation + homeAngle * t.speed * 2);
 
     let alpha = map(sin(angle + t.alphaOffset), -1, 1, 60, 150);
     let c = color(red(deckColor), green(deckColor), blue(deckColor), alpha);
@@ -403,10 +405,10 @@ function drawDeck() {
   }
 
   fill(100);
-  textSize(28);
+  textSize(35);
   textFont(subFont);
   textAlign(CENTER, BOTTOM);
-  text("Tap on the deck for a new question!", width / 2, height - 80);
+  text("Tap on the deck for a new question!", width / 2, height - 150);
 }
 
 // ===============================
