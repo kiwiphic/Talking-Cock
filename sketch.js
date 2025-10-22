@@ -79,22 +79,23 @@ function setup() {
     } while (x > width * 0.3 && x < width * 0.7 && y > height * 0.3 && y < height * 0.7);
 
     homeTriangles.push({
-      x,
-      y,
-      size: random(80, 180),
-      speed: random(0.2, 1),
-      alphaOffset: random(TWO_PI),
-      driftX: random(-0.3, 0.3),
-      driftY: random(-0.3, 0.3),
-      aspectX: random(0.6, 1.4),
-      aspectY: random(0.6, 1.4),
-      color: random([
-        color(232, 68, 37),   // red
-        color(255, 196, 12),  // yellow
-        color(4, 116, 60),    // green
-        color(8, 125, 190)    // blue
-      ])
-    });
+  x,
+  y,
+  size: random(80, 180),
+  speed: random(0.2, 1),
+  alphaOffset: random(TWO_PI),
+  driftX: random(-0.3, 0.3),
+  driftY: random(-0.3, 0.3),
+  aspectX: random(0.6, 1.4),
+  aspectY: random(0.6, 1.4),
+  color: random([
+    color(232, 68, 37),  // red
+    color(255, 196, 12), // yellow
+    color(4, 116, 60),   // green
+    color(8, 125, 190)   // blue
+  ])
+});
+
   }
 
   // Card setup
@@ -132,36 +133,30 @@ function drawHomeBackground() {
     push();
     translate(t.x, t.y);
     rotate(homeAngle * t.speed * 2);
+    fill(t.color);
 
-    fill(t.color); // solid color without fading
     let r = t.size / 2;
-
-    // Equilateral triangle centered at (0,0)
     beginShape();
     for (let i = 0; i < 3; i++) {
       let a = TWO_PI / 3 * i - HALF_PI;
-      let vx = cos(a) * r;
-      let vy = sin(a) * r;
+      let vx = cos(a) * r * t.aspectX;
+      let vy = sin(a) * r * t.aspectY;
       vertex(vx, vy);
     }
     endShape(CLOSE);
-
     pop();
 
-    // Drift movement
+    // Drift and wrapping
     t.x += t.driftX;
     t.y += t.driftY;
-
-    // Wrap around edges
     if (t.x < -t.size) t.x = width + t.size;
     if (t.x > width + t.size) t.x = -t.size;
     if (t.y < -t.size) t.y = height + t.size;
     if (t.y > height + t.size) t.y = -t.size;
   }
 
-  homeAngle += 0.02; // rotation speed
-
-  blendMode(BLEND); // Reset to default for text/cards
+  homeAngle += 0.02;
+  blendMode(BLEND); // reset
 }
 
 // ===============================
@@ -281,7 +276,7 @@ function loadDeck(deckNum) {
 
     bgTriangles.push({
       x, y,
-      size: random(80, 180),
+      size: random(40, 100),
       speed: random(0.002, 0.005),
       alphaOffset: random(TWO_PI),
       driftX: random(-0.3, 0.3),
