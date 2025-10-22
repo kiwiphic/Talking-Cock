@@ -262,22 +262,29 @@ for (let t of bgTriangles) {
   translate(t.x, t.y);
   rotate(angle * t.speed * 50);
 
+  // Fading opacity using sine wave
   let alpha = map(sin(angle + t.alphaOffset), -1, 1, 60, 150);
   let c = color(red(deckColor), green(deckColor), blue(deckColor), alpha);
   fill(c);
 
-  triangle(
-    -t.size / 2, t.size / 2,
-    0, -t.size / 2,
-    t.size / 2, t.size / 2
-  );
+  // Draw equilateral triangle (centered at 0,0)
+  let r = t.size / 2;
+  beginShape();
+  for (let i = 0; i < 3; i++) {
+    let a = TWO_PI / 3 * i - HALF_PI; // 120° spacing
+    let vx = cos(a) * r;
+    let vy = sin(a) * r;
+    vertex(vx, vy);
+  }
+  endShape(CLOSE);
+
   pop();
 
   // Gentle drifting
   t.x += t.driftX * 0.5;
   t.y += t.driftY * 0.5;
 
-  // Wrap triangles when they drift off-screen
+  // Wrap around edges
   if (t.x < -t.size) t.x = width + t.size;
   if (t.x > width + t.size) t.x = -t.size;
   if (t.y < -t.size) t.y = height + t.size;
