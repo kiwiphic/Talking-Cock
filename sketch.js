@@ -407,7 +407,7 @@ function drawDeck() {
 // ===============================
 function mousePressed() {
   if (currentDeck === 0) return;
-  if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 60) {
+  if (mouseX > 20 && mouseX < 270 && mouseY > 20 && mouseY < 90) {
     currentDeck = 0;
     return;
   }
