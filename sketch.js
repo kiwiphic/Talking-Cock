@@ -81,7 +81,7 @@ function setup() {
     homeTriangles.push({
       x,
       y,
-      size: random(40, 100),
+      size: random(80, 180),
       speed: random(0.2, 1),
       alphaOffset: random(TWO_PI),
       driftX: random(-0.3, 0.3),
@@ -267,7 +267,7 @@ function loadDeck(deckNum) {
 
     bgTriangles.push({
       x, y,
-      size: random(40, 100),
+      size: random(80, 180),
       speed: random(0.002, 0.005),
       alphaOffset: random(TWO_PI),
       driftX: random(-0.3, 0.3),
