@@ -82,7 +82,7 @@ function setup() {
   x,
   y,
   size: random(80, 180),
-  speed: random(0.2, 1),
+  speed: random(0.01, 0.03),
   alphaOffset: random(TWO_PI),
   driftX: random(-0.3, 0.3),
   driftY: random(-0.3, 0.3),
@@ -126,16 +126,23 @@ function draw() {
 // HOME BACKGROUND (triangles)
 // ===============================
 function drawHomeBackground() {
-  blendMode(MULTIPLY); // Use multiply blending
+  blendMode(MULTIPLY);
   noStroke();
 
   for (let t of homeTriangles) {
     push();
     translate(t.x, t.y);
     rotate(homeAngle * t.speed * 2);
+
+    // 🔹 Full opacity fill (no transparency reduction)
     fill(t.color);
 
-    let r = t.size / 2;
+    // 🔹 Faster "breathing" bounce (random per triangle)
+    if (!t.bounceSpeed) t.bounceSpeed = random(3, 6);
+    let bounceScale = 0.9 + 0.2 * sin(homeAngle * t.bounceSpeed + t.alphaOffset);
+
+    // Equilateral triangle (with bounce and aspect ratio)
+    let r = (t.size * bounceScale) / 2;
     beginShape();
     for (let i = 0; i < 3; i++) {
       let a = TWO_PI / 3 * i - HALF_PI;
@@ -146,7 +153,7 @@ function drawHomeBackground() {
     endShape(CLOSE);
     pop();
 
-    // Drift and wrapping
+    // Drift + wrapping
     t.x += t.driftX;
     t.y += t.driftY;
     if (t.x < -t.size) t.x = width + t.size;
@@ -156,7 +163,7 @@ function drawHomeBackground() {
   }
 
   homeAngle += 0.02;
-  blendMode(BLEND); // reset
+  blendMode(BLEND);
 }
 
 // ===============================
@@ -396,10 +403,10 @@ function drawDeck() {
   }
 
   fill(100);
-  textSize(50);
+  textSize(28);
   textFont(subFont);
   textAlign(CENTER, BOTTOM);
-  text("Tap on the deck for a new question!", width / 2, height - 40);
+  text("Tap on the deck for a new question!", width / 2, height - 80);
 }
 
 // ===============================
