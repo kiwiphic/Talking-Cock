@@ -207,27 +207,51 @@ function loadDeck(deckNum) {
   // Assign deck questions
   if (deckNum === 1) {
     questions = [
-      "Would you rather have your socks wet or your underwear wet?",
-      "Would you rather be scratched by a cat or bitten by a dog?",
-      "Would you rather whisper forever or shout forever?",
-      "Would you rather drink drinks with a spoon or drink soup with a straw?",
-      "Would you rather step on lego or step on dog poop?",
+     "\n\nWould you rather\n\n\nhave your socks\nwet\n\nor\n\nyour underwear\nwet?",
+  "\n\nWould you rather\n\n\nbe scratched\nby a cat\n\nor\n\nbe bitten\nby a dog?",
+  "\n\nWould you rather\n\n\nwhisper forever\n\nor\n\nshout forever?",
+  "\n\nWould you rather\n\n\ndrink drinks with\na spoon\n\nor\n\ndrink soup with\na straw?",
+  "\n\nWould you rather\n\n\nstep on lego\n\nor\n\nstep on\ndog poop?",
+  "\n\nWould you rather\n\n\nhave lukewarm\nfries forever\n\nor\n\nhave lukewarm\ncoffee forever?",
+  "\n\nWould you rather\n\n\nbe hated by\nsomeone you like\n\nor\n\nbe liked by\nsomeone you hate?",
+  "\n\nWould you rather\n\n\nlose your\nsense of taste\n\nor\n\nlose your\nhearing?",
+  "\n\nWould you rather\n\n\npost your\ncamera roll\n\nor\n\nrelease your\ninternet search\nhistory?",
+  "\n\nWould you rather\n\n\nwisdom tooth\npain\n\nor\n\ningrown toenail\npain?",
+  "\n\nWould you rather\n\n\n10\ncockroaches\n\nor\n\n10\nlizards?",
+  "\n\nWould you rather\n\n\nbe caught talking\nto yourself\n\nor\n\ndance in\npublic?",
+  "\n\nWould you rather\n\n\nhave a super\nclingy partner\n\nor\n\nhave a\nnonchalant\npartner?",
+  "\n\nWould you rather\n\n\nhave no more\nsugar forever\n\nor\n\nhave no more\nmeat forever?",
+  "\n\nWould you rather\n\n\nlive in a\ndifferent country\nevery week\n\nor\n\nlive in one\ncountry forever?",
+  "\n\nWould you rather\n\n\nalways be\n5 min late\n\nor\n\nalways be\n1 hour early?",
+  "\n\nWould you rather\n\n\nairplane\naisle seat\n\nor\n\nairplane\nwindow seat?",
+  "\n\nWould you rather\n\n\ndrink\nKopitiam drinks\n\nor\n\ndrink\ncafe drinks?",
+  "\n\nWould you rather\n\n\nclimb a slope\n\nor\n\nclimb stairs?",
+  "\n\nWould you rather\n\n\nride a\nrollercoaster\n\nor\n\nenter a\nhaunted house?",
+  "\n\nWould you rather\n\n\neat ice cream\nin a cone\n\nor\n\neat ice cream\nin a cup?",
     ];
   } else if (deckNum === 2) {
     questions = [
-      "Your thoughts on pineapple on pizza?",
-      "Your thoughts on mint chocolate ice cream?",
-      "Your thoughts on licking vs biting ice cream?",
-      "Your thoughts on matcha?",
-      "Your thoughts on showering in the morning?",
+      "\n\nYour thoughts on\n\n\nPineapple\non pizza",
+      "\n\nYour thoughts on\n\n\nMint\nchocolate\nice cream",
+      "\n\nYour thoughts on\n\n\nLicking vs\nbiting\nice cream",
+      "\n\nYour thoughts on\n\n\n\nMatcha",
+      "\n\nYour thoughts on\n\n\nShowering\nin the\nmorning",
+      "\n\nYour thoughts on\n\n\nHoroscope\nenthusiasts",
+      "\n\nYour thoughts on\n\n\nCats\nvs\ndogs",
+      "\n\nYour thoughts on\n\n\nThe 3\nsecond rule\n(Food)",
+      "\n\nYour thoughts on\n\n\nWearing the\nsame jeans\nfor a week",
+      "\n\nYour thoughts on\n\n\nGhosting a\nfirst date",
+      "\n\nYour thoughts on\n\n\nSock shoe,\nsock shoe\nvs\nsock sock,\nshoe shoe",
+      "\n\nYour thoughts on\n\n\nCrocks being\na fashion\nstatement",
+      "\n\nYour thoughts on\n\n\nArtificial\nintelligence",
     ];
   } else if (deckNum === 3) {
     questions = [
-      "List 3 items you’d bring to a deserted island and why?",
-      "If you were a ghost, who would you haunt and how?",
-      "What type of bread would you be and why?",
-      "If you could tame any animal, what would it be and why?",
-      "If you could swap bodies, who with and why?",
+       "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
+      "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
+      "What type of\nbread would you\nbe and why?",
+      "If you could tame\nany animal in the\nworld, what would\nit be and why?",
+      "If you could swap\nbodies,who would\nyou swap with\nand why?",
     ];
   }
 
@@ -419,4 +443,3 @@ function drawScaledTriangle(size, scaleX = 1, scaleY = 1) {
   }
   endShape(CLOSE);
 }
-
