@@ -423,12 +423,12 @@ function drawBackButton() {
   rectMode(CORNER);
   stroke(0);
   fill(255);
-  rect(20, 20, 100, 40, 8);
+  rect(20, 20, 250, 70, 15);
   noStroke();
   fill(0);
-  textSize(16);
+  textSize(40);
   textAlign(CENTER, CENTER);
-  text("Back", 70, 40);
+  text("Back", 145, 53);
 }
 
 // ===============================
