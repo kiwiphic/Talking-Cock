@@ -125,29 +125,43 @@ function draw() {
 // HOME BACKGROUND (triangles)
 // ===============================
 function drawHomeBackground() {
+  blendMode(MULTIPLY); // Use multiply blending
   noStroke();
+
   for (let t of homeTriangles) {
     push();
     translate(t.x, t.y);
     rotate(homeAngle * t.speed * 2);
 
-    let alpha = map(sin(homeAngle + t.alphaOffset), -1, 1, 60, 150);
-    let c = color(red(t.color), green(t.color), blue(t.color), alpha);
-    fill(c);
+    fill(t.color); // solid color without fading
+    let r = t.size / 2;
 
-    drawScaledTriangle(t.size, t.aspectX, t.aspectY);
+    // Equilateral triangle centered at (0,0)
+    beginShape();
+    for (let i = 0; i < 3; i++) {
+      let a = TWO_PI / 3 * i - HALF_PI;
+      let vx = cos(a) * r;
+      let vy = sin(a) * r;
+      vertex(vx, vy);
+    }
+    endShape(CLOSE);
+
     pop();
 
+    // Drift movement
     t.x += t.driftX;
     t.y += t.driftY;
 
+    // Wrap around edges
     if (t.x < -t.size) t.x = width + t.size;
     if (t.x > width + t.size) t.x = -t.size;
     if (t.y < -t.size) t.y = height + t.size;
     if (t.y > height + t.size) t.y = -t.size;
   }
 
-  homeAngle += 0.02;
+  homeAngle += 0.02; // rotation speed
+
+  blendMode(BLEND); // Reset to default for text/cards
 }
 
 // ===============================
