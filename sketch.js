@@ -198,10 +198,7 @@ function drawHome() {
   fill(0);
   textFont(myFont);
   textAlign(CENTER, CENTER);
-
-  // Subtitle text below the title image
   textSize(30);
-  text("Select your deck of nonsense", width / 2, height * 0.35);
 
   // Deck buttons
   drawDeckButton("Deck 1", width / 2, height / 2, 1);
