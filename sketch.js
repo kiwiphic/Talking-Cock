@@ -35,7 +35,7 @@ let currentQuestion = "";
 
 // Home buttons
 let homeButtons = [];
-let homeButtonScale = 0.2; // Adjust this to resize all buttons at once (1 = original size)
+let homeButtonScale = 0.13; // Adjust this to resize all buttons at once (1 = original size)
 
 // ===============================
 // Preload assets
@@ -125,8 +125,8 @@ function setup() {
   // Home buttons setup (speech bubble PNGs)
   homeButtons = [
     { img: homeButton1, x: -400, y: height / 2, targetX: width / 2, side: "left", deck: 1 },
-    { img: homeButton2, x: width + 400, y: height / 2 + 130, targetX: width / 2, side: "right", deck: 2 },
-    { img: homeButton3, x: -400, y: height / 2 + 260, targetX: width / 2, side: "left", deck: 3 },
+    { img: homeButton2, x: width + 400, y: height / 2 + 160, targetX: width / 2, side: "right", deck: 2 },
+    { img: homeButton3, x: -400, y: height / 2 + 320, targetX: width / 2, side: "left", deck: 3 },
   ];
 }
 
@@ -215,7 +215,7 @@ function drawHomeButtons() {
     else btn.x = lerp(btn.x, btn.targetX + 140, 0.08);
 
     // Pop/bounce effect
-    let scale = homeButtonScale * (1 + 0.05 * sin(frameCount * 0.12 + btn.y * 0.01));
+    let scale = homeButtonScale * (1 + 0.025 * sin(frameCount * 0.1 + btn.y * 0.01));
 
     // Draw image
     let imgW = btn.img.width * scale;
