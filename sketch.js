@@ -2,6 +2,9 @@
 // Talking Cock — Full Game with Decks (p5.js)
 // ==========================================
 
+// Disable p5 friendly error system for better performance (especially on mobile)
+p5.disableFriendlyErrors = true;
+
 // Fonts
 let myFont, subFont;
 
