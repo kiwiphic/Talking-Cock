@@ -33,13 +33,22 @@ let questions = [];
 let availableQuestions = [];
 let currentQuestion = "";
 
+// Home buttons
+let homeButtons = [];
+let homeButtonScale = 0.2; // Adjust this to resize all buttons at once (1 = original size)
+
 // ===============================
 // Preload assets
 // ===============================
 function preload() {
   myFont = loadFont("Assets/Fonts/Filson_Soft_Bold.otf");
   subFont = loadFont("Assets/Fonts/Quicksand_Book.otf");
+
+  // Home assets
   homeTitle = loadImage("Assets/Home/Home_Title.png");
+  homeButton1 = loadImage("Assets/Home/Home_Button1.png");
+  homeButton2 = loadImage("Assets/Home/Home_Button2.png");
+  homeButton3 = loadImage("Assets/Home/Home_Button3.png");
 
   // Deck 1
   cardFront[1] = loadImage("Assets/Cards/Card1_Front.png");
@@ -80,24 +89,23 @@ function setup() {
     } while (x > width * 0.3 && x < width * 0.7 && y > height * 0.3 && y < height * 0.7);
 
     homeTriangles.push({
-  x,
-  y,
-  size: random(80, 180),
-  speed: random(0.01, 0.03),
-  alphaOffset: random(TWO_PI),
-  driftX: random(-0.3, 0.3),
-  driftY: random(-0.3, 0.3),
-  aspectX: random(0.6, 1.4),
-  aspectY: random(0.6, 1.4),
-  baseRotation: random(TWO_PI),
-  color: random([
-    color(232, 68, 37),  // red
-    color(255, 196, 12), // yellow
-    color(4, 116, 60),   // green
-    color(8, 125, 190)   // blue
-  ])
-});
-
+      x,
+      y,
+      size: random(80, 180),
+      speed: random(0.01, 0.03),
+      alphaOffset: random(TWO_PI),
+      driftX: random(-0.3, 0.3),
+      driftY: random(-0.3, 0.3),
+      aspectX: random(0.6, 1.4),
+      aspectY: random(0.6, 1.4),
+      baseRotation: random(TWO_PI),
+      color: random([
+        color(232, 68, 37),  // red
+        color(255, 196, 12), // yellow
+        color(4, 116, 60),   // green
+        color(8, 125, 190)   // blue
+      ])
+    });
   }
 
   // Card setup
@@ -113,6 +121,13 @@ function setup() {
     currentDeck = int(deck);
     loadDeck(currentDeck);
   }
+
+  // Home buttons setup (speech bubble PNGs)
+  homeButtons = [
+    { img: homeButton1, x: -400, y: height / 2, targetX: width / 2, side: "left", deck: 1 },
+    { img: homeButton2, x: width + 400, y: height / 2 + 130, targetX: width / 2, side: "right", deck: 2 },
+    { img: homeButton3, x: -400, y: height / 2 + 260, targetX: width / 2, side: "left", deck: 3 },
+  ];
 }
 
 // ===============================
@@ -122,9 +137,9 @@ function draw() {
   background('#fcf7e6');
 
   if (currentDeck === 0) {
-    drawHomeBackground(); // triangles first
-    drawHomeTitle();      // title image next
-    drawHome();           // text + buttons on top
+    drawHomeBackground(); // rotating triangles
+    drawHomeTitle();      // bouncing title image
+    drawHomeButtons();    // PNG buttons
   } else {
     drawDeck();
   }
@@ -140,28 +155,26 @@ function drawHomeBackground() {
   for (let t of homeTriangles) {
     push();
     translate(t.x, t.y);
-    rotate(t.baseRotation + homeAngle * t.speed * 2);
-
+    rotate((t.baseRotation || 0) + homeAngle * (t.speed || 0.02) * 2);
     fill(t.color);
 
     if (!t.bounceSpeed) t.bounceSpeed = random(3, 6);
-    let bounceScale = 0.9 + 0.2 * sin(homeAngle * t.bounceSpeed + t.alphaOffset);
+    let bounceScale = 0.9 + 0.2 * sin(homeAngle * t.bounceSpeed + (t.alphaOffset || 0));
 
-    // Equilateral triangle
-    let r = (t.size * bounceScale) / 2;
+    let r = (t.size || 100) * bounceScale / 2;
     beginShape();
     for (let i = 0; i < 3; i++) {
       let a = TWO_PI / 3 * i - HALF_PI;
-      let vx = cos(a) * r * t.aspectX;
-      let vy = sin(a) * r * t.aspectY;
+      let vx = cos(a) * r * (t.aspectX || 1);
+      let vy = sin(a) * r * (t.aspectY || 1);
       vertex(vx, vy);
     }
     endShape(CLOSE);
     pop();
 
     // Drift + wrapping
-    t.x += t.driftX;
-    t.y += t.driftY;
+    t.x += (t.driftX || 0);
+    t.y += (t.driftY || 0);
     if (t.x < -t.size) t.x = width + t.size;
     if (t.x > width + t.size) t.x = -t.size;
     if (t.y < -t.size) t.y = height + t.size;
@@ -177,61 +190,47 @@ function drawHomeBackground() {
 // ===============================
 function drawHomeTitle() {
   imageMode(CENTER);
-
-  // 🔹 Optional gentle float effect
-  let floatY = sin(frameCount * 0.03) * 5; // small up-down motion
-  let imgScale = 0.14; // scale image size
+  let bounce = sin(frameCount * 0.08) * 10; // noticeable bounce
+  let imgScale = 0.14;
 
   image(
     homeTitle,
     width / 2,
-    height * 0.18 + floatY, // near top, centered
+    height * 0.18 + bounce,
     homeTitle.width * imgScale,
     homeTitle.height * imgScale
   );
 }
 
 // ===============================
-// HOME SCREEN (text + buttons)
+// HOME PNG BUTTONS
 // ===============================
-function drawHome() {
-  fill(0);
-  textFont(myFont);
-  textAlign(CENTER, CENTER);
-  textSize(30);
-
-  // Deck buttons
-  drawDeckButton("Deck 1", width / 2, height / 2, 1);
-  drawDeckButton("Deck 2", width / 2, height / 2 + 100, 2);
-  drawDeckButton("Deck 3", width / 2, height / 2 + 200, 3);
-}
-
-// ===============================
-// DRAW BUTTON
-// ===============================
-function drawDeckButton(label, x, y, deckNum) {
-  rectMode(CENTER);
-  textAlign(CENTER, CENTER);
-
-  // Button shape
-  stroke(0);
-  fill(255);
-  rect(x, y, 250, 70, 15);
-
-  // Button label
+function drawHomeButtons() {
+  imageMode(CENTER);
   noStroke();
-  fill(0);
-  textSize(40);
-  text(label, x, y);
 
-  // Button click detection
-  if (
-    mouseIsPressed &&
-    mouseX > x - 125 && mouseX < x + 125 &&
-    mouseY > y - 35 && mouseY < y + 35
-  ) {
-    currentDeck = deckNum;
-    loadDeck(deckNum);
+  for (let btn of homeButtons) {
+    // Slide-in animation
+    if (btn.side === "left") btn.x = lerp(btn.x, btn.targetX - 140, 0.08);
+    else btn.x = lerp(btn.x, btn.targetX + 140, 0.08);
+
+    // Pop/bounce effect
+    let scale = homeButtonScale * (1 + 0.05 * sin(frameCount * 0.12 + btn.y * 0.01));
+
+    // Draw image
+    let imgW = btn.img.width * scale;
+    let imgH = btn.img.height * scale;
+    image(btn.img, btn.x, btn.y, imgW, imgH);
+
+    // Click hitbox
+    if (
+      mouseIsPressed &&
+      mouseX > btn.x - imgW / 2 && mouseX < btn.x + imgW / 2 &&
+      mouseY > btn.y - imgH / 2 && mouseY < btn.y + imgH / 2
+    ) {
+      currentDeck = btn.deck;
+      loadDeck(btn.deck);
+    }
   }
 }
 
