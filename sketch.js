@@ -35,7 +35,7 @@ let currentQuestion = "";
 
 // Home buttons
 let homeButtons = [];
-let homeButtonScale = 0.135; // Adjust this to resize all buttons at once (1 = original size)
+let homeButtonScale = 0.14; // Adjust this to resize all buttons at once (1 = original size)
 
 // ===============================
 // Preload assets
@@ -124,9 +124,9 @@ function setup() {
 
   // Home buttons setup (speech bubble PNGs)
   homeButtons = [
-    { img: homeButton1, x: -400, y: height / 2 + 20, targetX: width / 2, side: "left", deck: 1 },
-    { img: homeButton2, x: width + 400, y: height / 2 + 160, targetX: width / 2, side: "right", deck: 2 },
-    { img: homeButton3, x: -400, y: height / 2 + 320, targetX: width / 2, side: "left", deck: 3 },
+    { img: homeButton1, x: -400, y: height / 2 + 30, targetX: width / 2 - 30, side: "left", deck: 1 },
+    { img: homeButton2, x: width + 400, y: height / 2 + 200, targetX: width / 2 + 30, side: "right", deck: 2 },
+    { img: homeButton3, x: -400, y: height / 2 + 390, targetX: width / 2 - 30, side: "left", deck: 3 },
   ];
 }
 
