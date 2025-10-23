@@ -11,7 +11,7 @@ let currentDeck = 0; // 0 = home, 1,2,3 = decks
 // Card variables
 let cardFront = [], cardBack = [];
 let shuffleFrames = [null, [], [], [], []]; // Deck indices 1,2,3
-let cardFrontCurrent, cardBackCurrent, shuffleFramesCurrent;
+let cardFrontCurrent, cardBackCurrent, shuffleFramesCurrent, homeTitle;
 let currentFrame = 0;
 let playingShuffle = false;
 let playingFlip = false;
@@ -39,6 +39,7 @@ let currentQuestion = "";
 function preload() {
   myFont = loadFont("Assets/Fonts/Filson_Soft_Bold.otf");
   subFont = loadFont("Assets/Fonts/Quicksand_Book.otf");
+  homeTitle = loadImage("Assets/Home/Home_Title.png");
 
   // Deck 1
   cardFront[1] = loadImage("Assets/Cards/Card1_Front.png");
@@ -115,12 +116,18 @@ function setup() {
 }
 
 // ===============================
-// Draw loop
+// DRAW LOOP
 // ===============================
 function draw() {
   background('#fcf7e6');
-  if (currentDeck === 0) drawHome();
-  else drawDeck();
+
+  if (currentDeck === 0) {
+    drawHomeBackground(); // triangles first
+    drawHomeTitle();      // title image next
+    drawHome();           // text + buttons on top
+  } else {
+    drawDeck();
+  }
 }
 
 // ===============================
@@ -134,15 +141,13 @@ function drawHomeBackground() {
     push();
     translate(t.x, t.y);
     rotate(t.baseRotation + homeAngle * t.speed * 2);
-    
-    // 🔹 Full opacity fill (no transparency reduction)
+
     fill(t.color);
 
-    // 🔹 Faster "breathing" bounce (random per triangle)
     if (!t.bounceSpeed) t.bounceSpeed = random(3, 6);
     let bounceScale = 0.9 + 0.2 * sin(homeAngle * t.bounceSpeed + t.alphaOffset);
 
-    // Equilateral triangle (with bounce and aspect ratio)
+    // Equilateral triangle
     let r = (t.size * bounceScale) / 2;
     beginShape();
     for (let i = 0; i < 3; i++) {
@@ -168,17 +173,37 @@ function drawHomeBackground() {
 }
 
 // ===============================
-// HOME SCREEN
+// HOME TITLE IMAGE
+// ===============================
+function drawHomeTitle() {
+  imageMode(CENTER);
+
+  // 🔹 Optional gentle float effect
+  let floatY = sin(frameCount * 0.02) * 5; // small up-down motion
+  let imgScale = 0.1; // scale image size
+
+  image(
+    homeTitle,
+    width / 2,
+    height * 0.18 + floatY, // near top, centered
+    homeTitle.width * imgScale,
+    homeTitle.height * imgScale
+  );
+}
+
+// ===============================
+// HOME SCREEN (text + buttons)
 // ===============================
 function drawHome() {
-  drawHomeBackground();
   fill(0);
-  textSize(40);
   textFont(myFont);
-  text("Talking Cock", width / 2, height / 4);
-  textSize(40);
-  text("Select your deck of nonsense", width / 2, height / 4 + 50);
+  textAlign(CENTER, CENTER);
 
+  // Subtitle text below the title image
+  textSize(30);
+  text("Select your deck of nonsense", width / 2, height * 0.35);
+
+  // Deck buttons
   drawDeckButton("Deck 1", width / 2, height / 2, 1);
   drawDeckButton("Deck 2", width / 2, height / 2 + 100, 2);
   drawDeckButton("Deck 3", width / 2, height / 2 + 200, 3);
@@ -190,17 +215,24 @@ function drawHome() {
 function drawDeckButton(label, x, y, deckNum) {
   rectMode(CENTER);
   textAlign(CENTER, CENTER);
+
+  // Button shape
   stroke(0);
   fill(255);
   rect(x, y, 250, 70, 15);
+
+  // Button label
   noStroke();
   fill(0);
   textSize(40);
   text(label, x, y);
 
-  if (mouseIsPressed &&
-      mouseX > x - 125 && mouseX < x + 125 &&
-      mouseY > y - 35 && mouseY < y + 35) {
+  // Button click detection
+  if (
+    mouseIsPressed &&
+    mouseX > x - 125 && mouseX < x + 125 &&
+    mouseY > y - 35 && mouseY < y + 35
+  ) {
     currentDeck = deckNum;
     loadDeck(deckNum);
   }
@@ -408,7 +440,7 @@ function drawDeck() {
   textSize(35);
   textFont(subFont);
   textAlign(CENTER, BOTTOM);
-  text("Tap on the deck for a new question!", width / 2, height - 150);
+  text("Tap on the deck for a new question!", width / 2, height - 350);
 }
 
 // ===============================
