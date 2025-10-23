@@ -180,7 +180,7 @@ function drawHomeTitle() {
 
   // 🔹 Optional gentle float effect
   let floatY = sin(frameCount * 0.02) * 5; // small up-down motion
-  let imgScale = 0.1; // scale image size
+  let imgScale = 0.4; // scale image size
 
   image(
     homeTitle,
