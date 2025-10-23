@@ -179,8 +179,8 @@ function drawHomeTitle() {
   imageMode(CENTER);
 
   // 🔹 Optional gentle float effect
-  let floatY = sin(frameCount * 0.02) * 5; // small up-down motion
-  let imgScale = 0.15; // scale image size
+  let floatY = sin(frameCount * 0.03) * 5; // small up-down motion
+  let imgScale = 0.14; // scale image size
 
   image(
     homeTitle,
