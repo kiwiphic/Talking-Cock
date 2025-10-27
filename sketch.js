@@ -248,7 +248,7 @@ function drawHomeButtons() {
 }
 
 // ===============================
-// HOME MASCOT POP-UP ANIMATION 🐔
+// HOME MASCOT POP-UP ANIMATION 
 // ===============================
 function drawHomeMascot() {
   imageMode(CENTER);
@@ -257,7 +257,7 @@ function drawHomeMascot() {
   homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
 
   // gentle bounce
-  let bounce = sin(frameCount * 0.12) * 4;
+  let bounce = sin(frameCount * 0.08) * 3;
   let scale = homeMascotObj.scale + 0.02 * sin(frameCount * 0.1);
 
   image(
