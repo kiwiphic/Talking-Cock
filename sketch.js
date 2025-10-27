@@ -137,8 +137,8 @@ function setup() {
   img: homeMascot,
   x: width / 2,
   y: height + 200,        // start below the screen
-  targetY: height * 0.2, // where it settles (near bottom)
-  scale: 0.15              // adjust size if needed
+  targetY: height * 1, // where it settles (near bottom)
+  scale: 0.2              // adjust size if needed
 };
 }
 
@@ -257,7 +257,7 @@ function drawHomeMascot() {
   homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
 
   // gentle bounce
-  let bounce = sin(frameCount * 0.12) * 8;
+  let bounce = sin(frameCount * 0.12) * 4;
   let scale = homeMascotObj.scale + 0.02 * sin(frameCount * 0.1);
 
   image(
