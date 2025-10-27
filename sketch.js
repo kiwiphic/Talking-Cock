@@ -137,8 +137,8 @@ function setup() {
   img: homeMascot,
   x: width / 2,
   y: height + 200,        // start below the screen
-  targetY: height * 0.6, // where it settles (near bottom)
-  scale: 0.1              // adjust size if needed
+  targetY: height * 0.2, // where it settles (near bottom)
+  scale: 0.15              // adjust size if needed
 };
 }
 
