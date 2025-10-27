@@ -52,6 +52,7 @@ function preload() {
   homeButton1 = loadImage("Assets/Home/Home_Button1.png");
   homeButton2 = loadImage("Assets/Home/Home_Button2.png");
   homeButton3 = loadImage("Assets/Home/Home_Button3.png");
+  homeMascot = loadImage("Assets/Home/Home_Mascot.png");
 
   // Deck 1
   cardFront[1] = loadImage("Assets/Cards/Card1_Front.png");
@@ -131,6 +132,14 @@ function setup() {
     { img: homeButton2, x: width + 400, y: height / 2 + 200, targetX: width / 2 + 30, side: "right", deck: 2 },
     { img: homeButton3, x: -400, y: height / 2 + 390, targetX: width / 2 - 30, side: "left", deck: 3 },
   ];
+
+  homeMascotObj = {
+  img: homeMascot,
+  x: width / 2,
+  y: height + 200,        // start below the screen
+  targetY: height * 0.88, // where it settles (near bottom)
+  scale: 0.4              // adjust size if needed
+};
 }
 
 // ===============================
@@ -143,6 +152,7 @@ function draw() {
     drawHomeBackground(); // rotating triangles
     drawHomeTitle();      // bouncing title image
     drawHomeButtons();    // PNG buttons
+    drawHomeMascot();     //  add mascot on top of everything else
   } else {
     drawDeck();
   }
@@ -235,6 +245,28 @@ function drawHomeButtons() {
       loadDeck(btn.deck);
     }
   }
+}
+
+// ===============================
+// HOME MASCOT POP-UP ANIMATION 🐔
+// ===============================
+function drawHomeMascot() {
+  imageMode(CENTER);
+
+  // smooth slide-up from bottom
+  homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
+
+  // gentle bounce
+  let bounce = sin(frameCount * 0.12) * 8;
+  let scale = homeMascotObj.scale + 0.02 * sin(frameCount * 0.1);
+
+  image(
+    homeMascotObj.img,
+    homeMascotObj.x,
+    homeMascotObj.y + bounce,
+    homeMascotObj.img.width * scale,
+    homeMascotObj.img.height * scale
+  );
 }
 
 // ===============================
