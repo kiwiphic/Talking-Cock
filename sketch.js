@@ -10,6 +10,7 @@ let myFont, subFont;
 
 // Deck management
 let currentDeck = 0; // 0 = home, 1,2,3 = decks
+let deckTitle = ""; // shared title for each deck
 
 // Card variables
 let cardFront = [], cardBack = [];
@@ -257,8 +258,8 @@ function drawHomeMascot() {
   homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
 
   // gentle bounce
-  let bounce = sin(frameCount * 0.08) * 3;
-  let scale = homeMascotObj.scale + 0.02 * sin(frameCount * 0.1);
+  let bounce = sin(frameCount * 0.08) * 2;
+  let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
 
   image(
     homeMascotObj.img,
@@ -286,46 +287,49 @@ function loadDeck(deckNum) {
 
   // Assign deck questions
   if (deckNum === 1) {
+    deckTitle = "Would You Rather\n\n\n\n\nor\n\n\n\n\n";
     questions = [
-     "\n\nWould you rather\n\n\nhave your socks\nwet\n\nor\n\nyour underwear\nwet?",
-  "\n\nWould you rather\n\n\nbe scratched\nby a cat\n\nor\n\nbe bitten\nby a dog?",
-  "\n\nWould you rather\n\n\nwhisper forever\n\nor\n\nshout forever?",
-  "\n\nWould you rather\n\n\ndrink drinks with\na spoon\n\nor\n\ndrink soup with\na straw?",
-  "\n\nWould you rather\n\n\nstep on lego\n\nor\n\nstep on\ndog poop?",
-  "\n\nWould you rather\n\n\nhave lukewarm\nfries forever\n\nor\n\nhave lukewarm\ncoffee forever?",
-  "\n\nWould you rather\n\n\nbe hated by\nsomeone you like\n\nor\n\nbe liked by\nsomeone you hate?",
-  "\n\nWould you rather\n\n\nlose your\nsense of taste\n\nor\n\nlose your\nhearing?",
-  "\n\nWould you rather\n\n\npost your\ncamera roll\n\nor\n\nrelease your\ninternet search\nhistory?",
-  "\n\nWould you rather\n\n\nwisdom tooth\npain\n\nor\n\ningrown toenail\npain?",
-  "\n\nWould you rather\n\n\n10\ncockroaches\n\nor\n\n10\nlizards?",
-  "\n\nWould you rather\n\n\nbe caught talking\nto yourself\n\nor\n\ndance in\npublic?",
-  "\n\nWould you rather\n\n\nhave a super\nclingy partner\n\nor\n\nhave a\nnonchalant\npartner?",
-  "\n\nWould you rather\n\n\nhave no more\nsugar forever\n\nor\n\nhave no more\nmeat forever?",
-  "\n\nWould you rather\n\n\nlive in a\ndifferent country\nevery week\n\nor\n\nlive in one\ncountry forever?",
-  "\n\nWould you rather\n\n\nalways be\n5 min late\n\nor\n\nalways be\n1 hour early?",
-  "\n\nWould you rather\n\n\nairplane\naisle seat\n\nor\n\nairplane\nwindow seat?",
-  "\n\nWould you rather\n\n\ndrink\nKopitiam drinks\n\nor\n\ndrink\ncafe drinks?",
-  "\n\nWould you rather\n\n\nclimb a slope\n\nor\n\nclimb stairs?",
-  "\n\nWould you rather\n\n\nride a\nrollercoaster\n\nor\n\nenter a\nhaunted house?",
-  "\n\nWould you rather\n\n\neat ice cream\nin a cone\n\nor\n\neat ice cream\nin a cup?",
+     "have your socks\nwet\n\n\n\nyour underwear\nwet?",
+  "be scratched\nby a cat\n\r\n\nbe bitten\nby a dog?",
+  "whisper forever\n\n\n\nshout forever?",
+  "drink drinks with\na spoon\n\n\n\ndrink soup with\na straw?",
+  "step on lego\n\n\n\nstep on\ndog poop?",
+  "have lukewarm\nfries forever\n\n\n\nhave lukewarm\ncoffee forever?",
+  "be hated by\nsomeone you like\n\n\n\nbe liked by\nsomeone you hate?",
+  "lose your\nsense of taste\n\n\n\nlose your\nhearing?",
+  "post your\ncamera roll\n\n\n\nrelease your\ninternet search\nhistory?",
+  "wisdom tooth\npain\n\n\n\ningrown toenail\npain?",
+  "10\ncockroaches\n\n\n\n10\nlizards?",
+  "be caught talking\nto yourself\n\n\n\ndance in\npublic?",
+  "have a super\nclingy partner\n\n\n\nhave a\nnonchalant\npartner?",
+  "have no more\nsugar forever\n\n\n\nhave no more\nmeat forever?",
+  "live in a\ndifferent country\nevery week\n\n\n\nlive in one\ncountry forever?",
+  "always be\n5 min late\n\n\n\nalways be\n1 hour early?",
+  "airplane\naisle seat\n\n\n\nairplane\nwindow seat?",
+  "drink\nKopitiam drinks\n\n\n\ndrink\ncafe drinks?",
+  "climb a slope\n\n\n\nclimb stairs?",
+  "ride a\nrollercoaster\n\n\n\nenter a\nhaunted house?",
+  "eat ice cream\nin a cone\n\n\n\neat ice cream\nin a cup?",
     ];
   } else if (deckNum === 2) {
+    deckTitle = "Your Thoughts On\n\n\n\n\n";
     questions = [
-      "\n\nYour thoughts on\n\n\nPineapple\non pizza",
-      "\n\nYour thoughts on\n\n\nMint\nchocolate\nice cream",
-      "\n\nYour thoughts on\n\n\nLicking vs\nbiting\nice cream",
-      "\n\nYour thoughts on\n\n\n\nMatcha",
-      "\n\nYour thoughts on\n\n\nShowering\nin the\nmorning",
-      "\n\nYour thoughts on\n\n\nHoroscope\nenthusiasts",
-      "\n\nYour thoughts on\n\n\nCats\nvs\ndogs",
-      "\n\nYour thoughts on\n\n\nThe 3\nsecond rule\n(Food)",
-      "\n\nYour thoughts on\n\n\nWearing the\nsame jeans\nfor a week",
-      "\n\nYour thoughts on\n\n\nGhosting a\nfirst date",
-      "\n\nYour thoughts on\n\n\nSock shoe,\nsock shoe\nvs\nsock sock,\nshoe shoe",
-      "\n\nYour thoughts on\n\n\nCrocks being\na fashion\nstatement",
-      "\n\nYour thoughts on\n\n\nArtificial\nintelligence",
+     "Pineapple\non pizza",
+      "Mint\nchocolate\nice cream",
+      "Licking vs\nbiting\nice cream",
+      "Matcha",
+      "Showering\nin the\nmorning",
+      "Horoscope\nenthusiasts",
+      "\Cats\nvs\ndogs",
+      "The 3\nsecond rule\n(Food)",
+      "Wearing the\nsame jeans\nfor a week",
+      "Ghosting a\nfirst date",
+      "Sock shoe,\nsock shoe\nvs\nsock sock,\nshoe shoe",
+      "Crocks being\na fashion\nstatement",
+      "Artificial\nintelligence",
     ];
   } else if (deckNum === 3) {
+    deckTitle = "Hypothetically\n\n\n\n\n";
     questions = [
        "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
       "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
@@ -359,6 +363,23 @@ function loadDeck(deckNum) {
   }
 
   availableQuestions = [...questions];
+}
+
+function drawQuestion(title, textContent) {
+  textAlign(CENTER, CENTER);
+
+  // Title
+  textFont(myFont);
+  textSize(42); // adjust title size
+  fill(0);
+  text(title, width / 2, height / 2 );
+
+  // Main question text
+  textFont(subFont);
+  textSize(30); // adjust question size
+  fill(0);
+  textLeading(35);
+  text(textContent, width / 2, height / 2 );
 }
 
 // ===============================
@@ -456,14 +477,10 @@ function drawDeck() {
   }
 
   if (showingBack) {
-    image(cardBackCurrent, cardX, cardY, cardW, cardH);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textFont(myFont);
-    textSize(50);
-    textLeading(49);
-    text(currentQuestion, width / 2, height / 2);
-  } else {
+  image(cardBackCurrent, cardX, cardY, cardW, cardH);
+  drawQuestion(deckTitle, currentQuestion);
+}
+ else {
     image(cardFrontCurrent, cardX, cardY, cardW, cardH);
   }
 
