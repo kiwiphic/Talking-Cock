@@ -287,7 +287,7 @@ function loadDeck(deckNum) {
 
   // Assign deck questions
   if (deckNum === 1) {
-    deckTitle = "Would You Rather\n\n\n\n\nor\n\n\n\n\n";
+    deckTitle = "Would You Rather\n\n\n\n\n\nor\n\n\n\n\n\n";
     questions = [
      "have your socks\nwet\n\n\n\nyour underwear\nwet?",
   "be scratched\nby a cat\n\r\n\nbe bitten\nby a dog?",
@@ -312,7 +312,7 @@ function loadDeck(deckNum) {
   "eat ice cream\nin a cone\n\n\n\neat ice cream\nin a cup?",
     ];
   } else if (deckNum === 2) {
-    deckTitle = "Your Thoughts On\n\n\n\n\n";
+    deckTitle = "Your Thoughts On\n\n\n\n\n\n\n";
     questions = [
      "Pineapple\non pizza",
       "Mint\nchocolate\nice cream",
@@ -329,7 +329,7 @@ function loadDeck(deckNum) {
       "Artificial\nintelligence",
     ];
   } else if (deckNum === 3) {
-    deckTitle = "Hypothetically\n\n\n\n\n";
+    deckTitle = "Hypothetically\n\n\n\n\n\n\n";
     questions = [
        "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
       "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
@@ -370,15 +370,15 @@ function drawQuestion(title, textContent) {
 
   // Title
   textFont(myFont);
-  textSize(42); // adjust title size
+  textSize(46); // adjust title size
   fill(0);
   text(title, width / 2, height / 2 );
 
   // Main question text
   textFont(subFont);
-  textSize(30); // adjust question size
+  textSize(36); // adjust question size
   fill(0);
-  textLeading(35);
+  textLeading(38);
   text(textContent, width / 2, height / 2 );
 }
 
