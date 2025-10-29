@@ -287,7 +287,7 @@ function loadDeck(deckNum) {
 
   // Assign deck questions
   if (deckNum === 1) {
-    deckTitle = "Would You Rather\n\n\n\n\nor\n\n\n\n\n\n";
+    deckTitle = "Would You Rather\n\n\n\n\n\nor\n\n\n\n";
     questions = [
      "have your socks\nwet\n\n\n\nyour underwear\nwet?",
   "be scratched\nby a cat\n\r\n\nbe bitten\nby a dog?",
@@ -370,16 +370,16 @@ function drawQuestion(title, textContent) {
 
   // Title
   textFont(myFont);
-  textSize(54); // adjust title size
+  textSize(52); // adjust title size
   fill(0);
   text(title, width / 2, height / 2 );
 
   // Main question text
   textFont(subFont);
-  textSize(40); // adjust question size
+  textSize(45); // adjust question size
   fill(0);
-  textLeading(42);
-  text(textContent, width / 2, height / 2 );
+  textLeading(47);
+  text(textContent, width / 2, height / 2 - 20);
 }
 
 // ===============================
