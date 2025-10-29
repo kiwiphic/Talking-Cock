@@ -287,7 +287,7 @@ function loadDeck(deckNum) {
 
   // Assign deck questions
   if (deckNum === 1) {
-    deckTitle = "\n\n\nWould You Rather\n\n\n\nor\n\n\n\n";
+    deckTitle = "\n\nWould You Rather\n\n\n\nor\n\n\n\n";
     questions = [
      "have your socks\nwet\n\n\nyour underwear\nwet?",
   "be scratched\nby a cat\n\n\nbe bitten\nby a dog?",
