@@ -297,7 +297,7 @@ function loadDeck(deckNum) {
   "have lukewarm\nfries forever\n\n\nhave lukewarm\ncoffee forever?",
   "be hated by\nsomeone you like\n\n\nbe liked by\nsomeone you hate?",
   "lose your\nsense of taste\n\n\nlose your\nhearing?",
-  "post your\ncamera roll\n\n\nrelease your\ninternet search\nhistory?",
+  "post your\ncamera roll\n\n\n\nrelease your\ninternet search\nhistory?",
   "wisdom tooth\npain\n\n\ningrown toenail\npain?",
   "10\ncockroaches\n\n\n10\nlizards?",
   "be caught talking\nto yourself\n\n\ndance in\npublic?",
