@@ -301,7 +301,7 @@ function loadDeck(deckNum) {
   "wisdom tooth\npain\n\n\ningrown toenail\npain?",
   "10\ncockroaches\n\n\n10\nlizards?",
   "be caught talking\nto yourself\n\n\ndance in\npublic?",
-  "have a super\nclingy partner\n\nhave a\nnonchalant\npartner?",
+  "have a super\nclingy partner\n\n\nhave a\nnonchalant\npartner?",
   "have no more\nsugar forever\n\n\nhave no more\nmeat forever?",
   "live in a\ndifferent country\nevery week\n\n\nlive in one\ncountry forever?",
   "always be\n5 min late\n\n\nalways be\n1 hour early?",
