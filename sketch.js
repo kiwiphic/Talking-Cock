@@ -316,6 +316,7 @@ function loadDeck(deckNum) {
   "loud\ntypers\n\n\nloud\nwhisperers?",
   "live as\na fish\n\n\nlive as\na bird?",
   "people who text\nback immediately\n\n\npeople who text\nafter a few hours?",
+  "be good-looking\nbut dumb\n\n\nbe smart\nbut ugly?",
     ];
   } else if (deckNum === 2) {
     deckTitle = "Your Thoughts On\n\n\n\n\n\n";
