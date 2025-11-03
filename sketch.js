@@ -310,6 +310,10 @@ function loadDeck(deckNum) {
   "climb a slope\n\n\nclimb stairs?",
   "ride a\nrollercoaster\n\n\nenter a\nhaunted house?",
   "eat ice cream\nin a cone\n\n\neat ice cream\nin a cup?",
+  "have no\nknees\n\n\nhave no\nelbows?",
+  "work\nfrom home\n\n\nwork\nin office?",
+  "never have\nto defecate\n\n\nnever have\nto shower?",
+  "loud\ntypers\n\n\nloud\nwhisperers?",
     ];
   } else if (deckNum === 2) {
     deckTitle = "Your Thoughts On\n\n\n\n\n\n";
@@ -327,15 +331,22 @@ function loadDeck(deckNum) {
       "Sock shoe,\nsock shoe\nvs\nsock sock,\nshoe shoe",
       "Crocks being\na fashion\nstatement",
       "Artificial\nintelligence",
+      "Pop Mart",
     ];
   } else if (deckNum === 3) {
     deckTitle = "Hypothetically\n\n\n\n\n\n";
     questions = [
-       "List 3 items you\nwould bring with\nyou on a deserted\nisland and why?",
+      "List 3 items you\nwould bring with\nyou on a deserted\nisland.",
       "If you were a\nghost,who would\nyou haunt and\nwhat would you do\nto annoy them?",
-      "What type of\nbread would you\nbe and why?",
-      "If you could tame\nany animal in the\nworld, what would\nit be and why?",
-      "If you could swap\nbodies,who would\nyou swap with\nand why?",
+      "What type of\nbread would\nyou be?",
+      "If you could tame\nany animal in the\nworld, what would\nit be?",
+      "If you could swap\nbodies,who would\nyou swap with?",
+      "If you had to\neat one cuisine\nfor the rest of\nyour life, what\n would it be?",
+      "What's your\nrole in a\nbank heist?",
+      "What's your\nrole in a\nbank heist?",
+      "What's one\nhousehold chore\nyou would\nmaster 100%?",
+      "What would you\nteach as a\nlecturer?",
+      "What vegetable\nwould you make\ndisappear from\nexistence?",
     ];
   }
 
