@@ -344,7 +344,7 @@ function loadDeck(deckNum) {
       "If you had to\neat one cuisine\nfor the rest of\nyour life, what\n would it be?",
       "What's your\nrole in a\nbank heist?",
       "What's your\nrole in a\nbank heist?",
-      "What's one\nhousehold chore\nyou would\nmaster 100%?",
+      "What's one\nhousehold chore\nyou would master\n100 percent?",
       "What would you\nteach as a\nlecturer?",
       "What vegetable\nwould you make\ndisappear from\nexistence?",
     ];
