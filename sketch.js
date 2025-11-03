@@ -359,6 +359,7 @@ function loadDeck(deckNum) {
       "What would\nyou teach as\na lecturer?",
       "What vegetable\nwould you make\ndisappear from\nexistence?",
       "If you can only\nuse one Telegram\nsticker for the\nrest of your\nlife, what would\nit be?",
+      "Name one famous\ntrend you would\nerase from\nexistence.",
     ];
   }
 
