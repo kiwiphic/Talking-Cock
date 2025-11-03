@@ -358,6 +358,7 @@ function loadDeck(deckNum) {
       "What's one\nhousehold chore\nyou would master\n100 percent?",
       "What would\nyou teach as\na lecturer?",
       "What vegetable\nwould you make\ndisappear from\nexistence?",
+      "If you can only\nuse one Telegram\nsticker for the\nrest of your\nlife, what would\nit be?",
     ];
   }
 
