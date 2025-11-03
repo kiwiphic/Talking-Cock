@@ -134,13 +134,14 @@ function setup() {
     { img: homeButton3, x: -400, y: height / 2 + 390, targetX: width / 2 - 30, side: "left", deck: 3 },
   ];
 
+ // Home mascot setup
   homeMascotObj = {
-  img: homeMascot,
-  x: width / 2,
-  y: height + 200,        // start below the screen
-  targetY: height * 1, // where it settles (near bottom)
-  scale: 0.2              // adjust size if needed
-};
+    img: homeMascot,
+    x: width / 2,
+    y: height + 200,      // starts below screen
+    targetY: height * 0.9, // settle slightly above bottom
+    scale: 0.2             // adjust for mascot size
+  };
 }
 
 // ===============================
@@ -247,7 +248,27 @@ function drawHomeButtons() {
     }
   }
 }
+// ===============================
+// HOME MASCOT POP-UP ANIMATION 
+// ===============================
+function drawHomeMascot() {
+  imageMode(CENTER);
 
+  // Smooth slide-up from bottom
+  homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
+
+  // Gentle bounce (reduce amplitude to make it calmer)
+  let bounce = sin(frameCount * 0.08) * 2;
+  let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
+
+  image(
+    homeMascotObj.img,
+    homeMascotObj.x,
+    homeMascotObj.y + bounce,
+    homeMascotObj.img.width * scale,
+    homeMascotObj.img.height * scale
+  );
+}
 // ===============================
 // MASCOT CLICK HANDLER (Desktop + Mobile)
 // ===============================
