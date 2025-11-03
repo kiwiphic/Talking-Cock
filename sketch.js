@@ -134,14 +134,13 @@ function setup() {
     { img: homeButton3, x: -400, y: height / 2 + 390, targetX: width / 2 - 30, side: "left", deck: 3 },
   ];
 
- // Home mascot setup
   homeMascotObj = {
-    img: homeMascot,
-    x: width / 2,
-    y: height + 200,      // starts below screen
-    targetY: height * 0.9, // settle slightly above bottom
-    scale: 0.2             // adjust for mascot size
-  };
+  img: homeMascot,
+  x: width / 2,
+  y: height + 200,        // start below the screen
+  targetY: height * 1, // where it settles (near bottom)
+  scale: 0.2              // adjust size if needed
+};
 }
 
 // ===============================
@@ -248,16 +247,17 @@ function drawHomeButtons() {
     }
   }
 }
+
 // ===============================
 // HOME MASCOT POP-UP ANIMATION 
 // ===============================
 function drawHomeMascot() {
   imageMode(CENTER);
 
-  // Smooth slide-up from bottom
+  // smooth slide-up from bottom
   homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
 
-  // Gentle bounce (reduce amplitude to make it calmer)
+  // gentle bounce
   let bounce = sin(frameCount * 0.08) * 2;
   let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
 
@@ -268,69 +268,6 @@ function drawHomeMascot() {
     homeMascotObj.img.width * scale,
     homeMascotObj.img.height * scale
   );
-}
-// ===============================
-// MASCOT CLICK HANDLER (Desktop + Mobile)
-// ===============================
-function mousePressed() {
-  if (checkMascotClick()) return; // handle mascot clicks first
-
-  // existing deck logic
-  if (currentDeck === 0) return;
-  if (mouseX > 20 && mouseX < 270 && mouseY > 20 && mouseY < 90) {
-    currentDeck = 0;
-    return;
-  }
-  if (
-    !playingShuffle &&
-    !playingFlip &&
-    mouseX > cardX - cardW / 2 &&
-    mouseX < cardX + cardW / 2 &&
-    mouseY > cardY - cardH / 2 &&
-    mouseY < cardY + cardH / 2
-  ) {
-    if (showingBack) {
-      playingFlip = true;
-      flipProgress = 0;
-      flipToFront = true;
-    } else {
-      playingShuffle = true;
-      currentFrame = 0;
-    }
-  }
-}
-
-// ===============================
-// TOUCH HANDLER (for mobile taps)
-// ===============================
-function touchStarted() {
-  if (checkMascotClick()) return false;
-  return true; // allow normal p5 touch handling
-}
-
-// ===============================
-// CHECK MASCOT CLICK FUNCTION
-// ===============================
-function checkMascotClick() {
-  if (currentDeck !== 0) return false;
-
-  let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
-  let imgW = homeMascotObj.img.width * scale;
-  let imgH = homeMascotObj.img.height * scale;
-  let bounce = sin(frameCount * 0.08) * 2;
-
-  if (
-    mouseX > homeMascotObj.x - imgW / 2 &&
-    mouseX < homeMascotObj.x + imgW / 2 &&
-    mouseY > homeMascotObj.y + bounce - imgH / 2 &&
-    mouseY < homeMascotObj.y + bounce + imgH / 2
-  ) {
-    // ✅ Directly open Instagram (works on mobile + desktop)
-    window.open("https://www.instagram.com/talking_cock/", "_blank");
-    return true;
-  }
-
-  return false;
 }
 
 // ===============================
