@@ -249,67 +249,12 @@ function drawHomeButtons() {
 }
 
 // ===============================
-// HOME MASCOT POP-UP ANIMATION (Clickable Instagram Link)
-// ===============================
-function drawHomeMascot() {
-  imageMode(CENTER);
-
-  // smooth slide-up from bottom
-  homeMascotObj.y = lerp(homeMascotObj.y, homeMascotObj.targetY, 0.08);
-
-  // gentle bounce
-  let bounce = sin(frameCount * 0.08) * 2;
-  let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
-
-  // draw the mascot
-  let imgW = homeMascotObj.img.width * scale;
-  let imgH = homeMascotObj.img.height * scale;
-  image(
-    homeMascotObj.img,
-    homeMascotObj.x,
-    homeMascotObj.y + bounce,
-    imgW,
-    imgH
-  );
-
-  // optional hover cursor feedback (visual only)
-  if (
-    currentDeck === 0 &&  // only active on home screen
-    mouseX > homeMascotObj.x - imgW / 2 &&
-    mouseX < homeMascotObj.x + imgW / 2 &&
-    mouseY > homeMascotObj.y + bounce - imgH / 2 &&
-    mouseY < homeMascotObj.y + bounce + imgH / 2
-  ) {
-    cursor(HAND);
-  } else {
-    cursor(ARROW);
-  }
-}
-
-// ===============================
-// MASCOT CLICK HANDLER
+// MASCOT CLICK HANDLER (Desktop + Mobile)
 // ===============================
 function mousePressed() {
-  if (currentDeck === 0) {
-    // check if clicked on mascot (only on home)
-    let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
-    let imgW = homeMascotObj.img.width * scale;
-    let imgH = homeMascotObj.img.height * scale;
-    let bounce = sin(frameCount * 0.08) * 2;
+  if (checkMascotClick()) return; // handle mascot clicks first
 
-    if (
-      mouseX > homeMascotObj.x - imgW / 2 &&
-      mouseX < homeMascotObj.x + imgW / 2 &&
-      mouseY > homeMascotObj.y + bounce - imgH / 2 &&
-      mouseY < homeMascotObj.y + bounce + imgH / 2
-    ) {
-      // ✨ Replace the link below with your actual Instagram URL
-      window.open("https://www.instagram.com/talking_cock/", "_blank");
-      return;
-    }
-  }
-
-  // existing logic for decks
+  // existing deck logic
   if (currentDeck === 0) return;
   if (mouseX > 20 && mouseX < 270 && mouseY > 20 && mouseY < 90) {
     currentDeck = 0;
@@ -332,6 +277,39 @@ function mousePressed() {
       currentFrame = 0;
     }
   }
+}
+
+// ===============================
+// TOUCH HANDLER (for mobile taps)
+// ===============================
+function touchStarted() {
+  if (checkMascotClick()) return false;
+  return true; // allow normal p5 touch handling
+}
+
+// ===============================
+// CHECK MASCOT CLICK FUNCTION
+// ===============================
+function checkMascotClick() {
+  if (currentDeck !== 0) return false;
+
+  let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
+  let imgW = homeMascotObj.img.width * scale;
+  let imgH = homeMascotObj.img.height * scale;
+  let bounce = sin(frameCount * 0.08) * 2;
+
+  if (
+    mouseX > homeMascotObj.x - imgW / 2 &&
+    mouseX < homeMascotObj.x + imgW / 2 &&
+    mouseY > homeMascotObj.y + bounce - imgH / 2 &&
+    mouseY < homeMascotObj.y + bounce + imgH / 2
+  ) {
+    // ✅ Directly open Instagram (works on mobile + desktop)
+    window.open("https://www.instagram.com/talking_cock/", "_blank");
+    return true;
+  }
+
+  return false;
 }
 
 // ===============================
