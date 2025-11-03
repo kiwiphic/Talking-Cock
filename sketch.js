@@ -249,7 +249,7 @@ function drawHomeButtons() {
 }
 
 // ===============================
-// HOME MASCOT POP-UP ANIMATION 
+// HOME MASCOT POP-UP ANIMATION (Clickable Instagram Link)
 // ===============================
 function drawHomeMascot() {
   imageMode(CENTER);
@@ -261,13 +261,77 @@ function drawHomeMascot() {
   let bounce = sin(frameCount * 0.08) * 2;
   let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
 
+  // draw the mascot
+  let imgW = homeMascotObj.img.width * scale;
+  let imgH = homeMascotObj.img.height * scale;
   image(
     homeMascotObj.img,
     homeMascotObj.x,
     homeMascotObj.y + bounce,
-    homeMascotObj.img.width * scale,
-    homeMascotObj.img.height * scale
+    imgW,
+    imgH
   );
+
+  // optional hover cursor feedback (visual only)
+  if (
+    currentDeck === 0 &&  // only active on home screen
+    mouseX > homeMascotObj.x - imgW / 2 &&
+    mouseX < homeMascotObj.x + imgW / 2 &&
+    mouseY > homeMascotObj.y + bounce - imgH / 2 &&
+    mouseY < homeMascotObj.y + bounce + imgH / 2
+  ) {
+    cursor(HAND);
+  } else {
+    cursor(ARROW);
+  }
+}
+
+// ===============================
+// MASCOT CLICK HANDLER
+// ===============================
+function mousePressed() {
+  if (currentDeck === 0) {
+    // check if clicked on mascot (only on home)
+    let scale = homeMascotObj.scale + 0.01 * sin(frameCount * 0.1);
+    let imgW = homeMascotObj.img.width * scale;
+    let imgH = homeMascotObj.img.height * scale;
+    let bounce = sin(frameCount * 0.08) * 2;
+
+    if (
+      mouseX > homeMascotObj.x - imgW / 2 &&
+      mouseX < homeMascotObj.x + imgW / 2 &&
+      mouseY > homeMascotObj.y + bounce - imgH / 2 &&
+      mouseY < homeMascotObj.y + bounce + imgH / 2
+    ) {
+      // ✨ Replace the link below with your actual Instagram URL
+      window.open("https://www.instagram.com/talking_cock/", "_blank");
+      return;
+    }
+  }
+
+  // existing logic for decks
+  if (currentDeck === 0) return;
+  if (mouseX > 20 && mouseX < 270 && mouseY > 20 && mouseY < 90) {
+    currentDeck = 0;
+    return;
+  }
+  if (
+    !playingShuffle &&
+    !playingFlip &&
+    mouseX > cardX - cardW / 2 &&
+    mouseX < cardX + cardW / 2 &&
+    mouseY > cardY - cardH / 2 &&
+    mouseY < cardY + cardH / 2
+  ) {
+    if (showingBack) {
+      playingFlip = true;
+      flipProgress = 0;
+      flipToFront = true;
+    } else {
+      playingShuffle = true;
+      currentFrame = 0;
+    }
+  }
 }
 
 // ===============================
