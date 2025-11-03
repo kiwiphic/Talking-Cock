@@ -345,7 +345,7 @@ function loadDeck(deckNum) {
       "What's your\nrole in a\nbank heist?",
       "What's your\nrole in a\nbank heist?",
       "What's one\nhousehold chore\nyou would master\n100 percent?",
-      "What would you\nteach as a\nlecturer?",
+      "What would\nyou teach as\na lecturer?",
       "What vegetable\nwould you make\ndisappear from\nexistence?",
     ];
   }
