@@ -342,7 +342,7 @@ function loadDeck(deckNum) {
       "Not clearing\nyour browser\ntabs",
       "Brushing\nteeth in the\nshower",
       "Crypto Bros",
-      
+      "The best way\nto cook an egg.",
     ];
   } else if (deckNum === 3) {
     deckTitle = "Hypothetically\n\n\n\n\n\n";
