@@ -314,6 +314,7 @@ function loadDeck(deckNum) {
   "work\nfrom home\n\n\nwork\nin office?",
   "never have\nto defecate\n\n\nnever have\nto shower?",
   "loud\ntypers\n\n\nloud\nwhisperers?",
+  "live as\na fish\n\n\nlive as\na bird?",
     ];
   } else if (deckNum === 2) {
     deckTitle = "Your Thoughts On\n\n\n\n\n\n";
