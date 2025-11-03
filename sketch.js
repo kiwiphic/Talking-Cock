@@ -315,6 +315,7 @@ function loadDeck(deckNum) {
   "never have\nto defecate\n\n\nnever have\nto shower?",
   "loud\ntypers\n\n\nloud\nwhisperers?",
   "live as\na fish\n\n\nlive as\na bird?",
+  "people who text\nback immediately\n\n\npeople who text\nafter a few hours?",
     ];
   } else if (deckNum === 2) {
     deckTitle = "Your Thoughts On\n\n\n\n\n\n";
@@ -333,6 +334,15 @@ function loadDeck(deckNum) {
       "Crocks being\na fashion\nstatement",
       "Artificial\nintelligence",
       "Pop Mart",
+      "Bubble tea with\nno pearls",
+      "Leaving dishes\nin the sink\novernight",
+      "Sharing your\nlocation with\nfriends",
+      "Ranting on\nsocial media",
+      "Personality quiz\nenthusiasts",
+      "Not clearing\nyour browser\ntabs",
+      "Brushing\nteeth in the\nshower",
+      "Crypto Bros",
+      
     ];
   } else if (deckNum === 3) {
     deckTitle = "Hypothetically\n\n\n\n\n\n";
