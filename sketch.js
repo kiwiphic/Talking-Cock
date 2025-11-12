@@ -317,6 +317,8 @@ function loadDeck(deckNum) {
   "live as\na fish\n\n\nlive as\na bird?",
   "people who text\nback immediately\n\n\npeople who text\nafter a few hours?",
   "be good-looking\nbut dumb\n\n\nbe smart\nbut ugly?",
+  "watch\nanime\n\n\nwatch\nK-drama?",
+  "step on a\nsnail\n\n\nstep on a\ncockroach?",
     ];
   } else if (deckNum === 2) {
     deckTitle = "Your Thoughts On\n\n\n\n\n\n";
