@@ -345,7 +345,13 @@ function loadDeck(deckNum) {
       "Not clearing\nyour browser\ntabs",
       "Brushing\nteeth in the\nshower",
       "Crypto Bros",
-      "The best way\nto cook an egg.",
+      "The best way\nto cook an egg",
+      "Letting your\nparents follow you\non social media",
+      "Couples sleeping\nin seperate\nbedrooms",
+      "Socks with\nslippers",
+      "Travelators are\nmade for walking\nnot standing",
+      "Setting more\nthan 10 alarms",
+      "Whats the point\nof gym selfies",
     ];
   } else if (deckNum === 3) {
     deckTitle = "Hypothetically\n\n\n\n\n\n";
